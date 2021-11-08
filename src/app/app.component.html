@@ -1,29 +1,23 @@
-<h1 class="bg-light p-5" [innerText]="title"></h1>
-<div class="px-5">
-  <button
-    type="button"
-    class="btn btn-primary my-3"
-    (click)="toggleDescription()"
-  >
-    Toggle Description
-  </button>
-</div>
-<div
-  class="alert alert-danger px-5"
-  [innerHtml]="description"
-  [hidden]="!showDescription"
-></div>
-<h1 class="bg-light p-5">$event Keyword</h1>
+<h1 class="bg-light p-5">{{ title }}</h1>
+<div class="alert alert-primary px-5">{{ description }}</div>
 <div class="px-5">
   <div class="mb-3">
     <input
-      class="form-control"
+      class="form-control my-1"
       id=""
       type="text"
-      placeholder="Enter any text"
+      placeholder="Enter any text | 2-way Binding"
+      aria-label=""
+      [(ngModel)]="givenInput"
+    />
+    <input
+      class="form-control my-1"
+      id=""
+      type="text"
+      placeholder="Enter any text | $event Binding"
       aria-label=""
       (input)="eventHandler($event)"
     />
   </div>
 </div>
-<div class="alert alert-primary px-5" *ngIf="givenInput">{{ givenInput }}</div>
+<div class="alert alert-danger px-5" *ngIf="givenInput">{{ givenInput }}</div>

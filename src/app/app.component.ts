@@ -6,14 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Event Binding';
-  description = `Event binding = <code>appending the data on an event fire</code>`;
-  showDescription: boolean = false;
-  givenInput!: string;
-
-  toggleDescription() {
-    this.showDescription = !this.showDescription;
-  }
+  title = '2-way data Binding';
+  description = `2-way data binding = `;
+  givenInput: string = '2-way Binding';
 
   eventHandler(event: Event) {
     console.log(event);
