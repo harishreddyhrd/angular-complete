@@ -9,4 +9,5 @@ export class AppComponent {
   title = 'Structural directives';
   description = 'ngIf, ngFor';
   adult: boolean = false;
+  languagesKnown: string[] = ['Telugu', 'Tamil', 'Hindi', 'English'];
 }

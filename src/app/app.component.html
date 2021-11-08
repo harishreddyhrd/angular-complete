@@ -5,7 +5,9 @@
   <div class="row">
     <div class="alert alert-primary px-5">{{ description }}</div>
   </div>
-
+  <div class="row">
+    <h3 class="bg-light p-5">{{ "ngIf demo" }}</h3>
+  </div>
   <div class="px-4">
     <button class="btn btn-danger" (click)="adult = true">Confirm 18+ ?</button>
   </div>
@@ -19,4 +21,14 @@
       <h1 class="my-2 px-5 text-success">U/A</h1>
     </div>
   </ng-template>
+
+  <hr />
+  <div class="row">
+    <h3 class="bg-light p-5">{{ "ngFor demo" }}</h3>
+  </div>
+  <div class="row alert alert-warning">
+    <div class="px-5" *ngFor="let item of languagesKnown; let sNo = index">
+      <p class="lead">{{ sNo }}.&nbsp;{{ item }}</p>
+    </div>
+  </div>
 </div>
