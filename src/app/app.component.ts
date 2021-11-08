@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'inititate';
-  description = 'description';
+  title = 'Structural directives';
+  description = 'ngIf, ngFor';
+  adult: boolean = false;
 }
