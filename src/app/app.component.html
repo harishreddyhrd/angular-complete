@@ -1,6 +1,2 @@
-<h1 class="bg-light p-5">
-  {{ title }}
-</h1>
-<div class="alert alert-danger px-5">
-  {{ description }}
-</div>
+<h1 class="bg-light p-5" [innerText]="title"></h1>
+<div class="alert alert-danger px-5" [innerHtml]="description"></div>

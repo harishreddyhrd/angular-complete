@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Data Binding using String interpolation';
-  description = `Data binding is nothing but the transfer of information from the local TS file to local HTML template. In local HTML file the data is represented using the {{ string interpolation }}`;
+  title = 'Property Binding';
+  description = `Property binding = <code>appending the data through an html attribute or property</code>`;
 }
