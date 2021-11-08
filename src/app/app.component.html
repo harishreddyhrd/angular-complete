@@ -6,11 +6,15 @@
     <div class="alert alert-primary px-5">{{ description }}</div>
   </div>
   <div class="row">
-    <h1
+    <div
       class="p-5 my-1"
       [ngStyle]="{ 'background-color': getBackgroundColor() }"
+      [ngClass]="{
+        'display-1': userStatus === false,
+        h4: userStatus === true
+      }"
     >
       {{ userStatus }}
-    </h1>
+    </div>
   </div>
 </div>
