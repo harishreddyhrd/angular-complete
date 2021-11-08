@@ -5,5 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './my-doubts.component.html',
 })
 export class MyDoubts {
-  queriesList: string[] = ["What's a @Decorator?"];
+  queriesList: string[] = [
+    "What's angular-cli? purpose of using that?",
+    "What's a @Decorator?",
+  ];
 }
