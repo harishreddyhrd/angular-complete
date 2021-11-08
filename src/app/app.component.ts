@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Property Binding';
-  description = `Property binding = <code>appending the data through an html attribute or property</code>`;
+  title = 'Event Binding';
+  description = `Event binding = <code>appending the data on an event fire</code>`;
+  showDescription: boolean = false;
+
+  toggleDescription() {
+    this.showDescription = !this.showDescription;
+  }
 }

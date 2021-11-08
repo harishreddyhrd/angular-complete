@@ -1,2 +1,15 @@
 <h1 class="bg-light p-5" [innerText]="title"></h1>
-<div class="alert alert-danger px-5" [innerHtml]="description"></div>
+<div class="px-5">
+  <button
+    type="button"
+    class="btn btn-primary my-3"
+    (click)="toggleDescription()"
+  >
+    Toggle Description
+  </button>
+</div>
+<div
+  class="alert alert-danger px-5"
+  [innerHtml]="description"
+  [hidden]="!showDescription"
+></div>
