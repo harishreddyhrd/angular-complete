@@ -1,1 +1,10 @@
 <p>TEMPLATE URL works!</p>
+<div class="container-fluid">
+  <div class="row" *ngFor="let item of toDoVideosList">
+    <div class="col-md-12">
+      <h5>
+        <code class="text-primary">&nbsp;{{ item }}</code>
+      </h5>
+    </div>
+  </div>
+</div>
