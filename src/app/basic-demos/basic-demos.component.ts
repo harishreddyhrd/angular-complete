@@ -12,6 +12,11 @@ export class BasicDemosComponent implements OnInit {
     '10. Understanding Different types of Selectors supported for creating components in angular.',
     '11. Implement Data Binding in the Angular. Understanding String Interpolation in the Html File.',
   ];
+  conceptsNeedHandsOn: string[] = [
+    'StyleUrls & Styles',
+    'Selectors - Attribute, Class Selectors',
+    'Data binding - String Interpolation',
+  ];
   constructor() {}
 
   ngOnInit(): void {}
