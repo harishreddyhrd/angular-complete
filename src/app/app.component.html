@@ -13,3 +13,17 @@
   [innerHtml]="description"
   [hidden]="!showDescription"
 ></div>
+<h1 class="bg-light p-5">$event Keyword</h1>
+<div class="px-5">
+  <div class="mb-3">
+    <input
+      class="form-control"
+      id=""
+      type="text"
+      placeholder="Enter any text"
+      aria-label=""
+      (input)="eventHandler($event)"
+    />
+  </div>
+</div>
+<div class="alert alert-primary px-5" *ngIf="givenInput">{{ givenInput }}</div>
