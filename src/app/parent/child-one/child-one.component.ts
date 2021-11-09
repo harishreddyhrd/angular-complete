@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-child-one',
@@ -6,9 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./child-one.component.scss'],
 })
 export class ChildOneComponent implements OnInit {
-  @Input('getTextForChildOne') firstChildText!: string;
+  firstChildText: string = 'First Child Text';
+  @Output() emitChildOneText = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  sendToParent() {
+    this.emitChildOneText.emit(this.firstChildText);
+  }
 }

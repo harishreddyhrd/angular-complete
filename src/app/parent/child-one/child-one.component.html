@@ -1,9 +1,14 @@
-<code class="h6 bg-dark p-1 text-warning mt-0 ml-0">Child-2 Component</code>
+<code class="h6 bg-dark p-1 text-warning mt-0 ml-0">Child-1 Component</code>
 <div class="container bg-light p-4 border border-dark">
   <div class="row">
     <div class="col-md-12">
       <code class="h6">firstChildText:&nbsp;</code>
       <code class="text-warning h5">{{ firstChildText }}</code>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary mt-4" (click)="sendToParent()">
+        Send data from Child-1 to Parent
+      </button>
     </div>
   </div>
 </div>

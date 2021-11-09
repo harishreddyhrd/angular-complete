@@ -6,6 +6,6 @@
       <code class="text-primary h5">{{ parentText }}</code>
     </div>
   </div>
-  <app-child-one [getTextForChildOne]="parentText"></app-child-one>
-  <app-child-two [getTextForChildTwo]="parentText"></app-child-two>
+  <app-child-one (emitChildOneText)="grabChildOneText($event)"></app-child-one>
+  <app-child-two (emitChildTwoText)="grabChildTwoText($event)"></app-child-two>
 </div>

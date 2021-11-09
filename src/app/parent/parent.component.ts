@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent implements OnInit {
-  parentText = 'This text comes from parent';
+  parentText!: string;
   constructor() {}
 
   ngOnInit(): void {}
+
+  grabChildOneText(emittedData: string) {
+    this.parentText = emittedData;
+  }
+  grabChildTwoText(emittedData: string) {
+    this.parentText = emittedData;
+  }
 }
