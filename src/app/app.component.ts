@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'inititate';
-  description = 'description';
+  title = 'Local references';
+  description =
+    'Local reference is used to select one of the HTML DOM elements';
+  output!: string;
+
+  displayValue(htmlInputElement: HTMLInputElement) {
+    this.output = htmlInputElement.value;
+  }
 }
