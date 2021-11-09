@@ -17,8 +17,8 @@
           #inputBox
         />
       </div>
-      <button class="btn btn-primary mb-3" (click)="displayValue(inputBox)">
-        Click the button to display input text below (using template reference)
+      <button class="btn btn-primary mb-3" (click)="displayValue()">
+        Click the button to display input text below (using @ViewChild)
       </button>
       <p class="lead" *ngIf="output">{{ output }}</p>
     </div>

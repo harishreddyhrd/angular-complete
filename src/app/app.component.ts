@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,12 @@ export class AppComponent {
   title = 'Local references';
   description =
     'Local reference is used to select one of the HTML DOM elements';
-  output!: string;
+  output!: any;
 
-  displayValue(htmlInputElement: HTMLInputElement) {
-    this.output = htmlInputElement.value;
+  @ViewChild('inputBox') inputGiven!: ElementRef;
+
+  displayValue() {
+    console.log(this.inputGiven);
+    this.output = this.inputGiven.nativeElement.value;
   }
 }
