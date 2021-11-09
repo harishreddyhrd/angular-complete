@@ -8,5 +8,8 @@ export class MyDoubts {
   queriesList: string[] = [
     "What's angular-cli? purpose of using that?",
     "What's a @Decorator?",
+    '@Input() & @Output() - Revise',
+    'View-encapsulation?',
+    'Emulated, None, Shadow DOM?',
   ];
 }
