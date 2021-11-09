@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'inititate';
-  description = 'description';
+  title = 'Parent-Child Communication';
+  description =
+    'Demonstaration of how data passes from a parent component to child component';
 }

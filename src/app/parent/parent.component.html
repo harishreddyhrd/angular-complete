@@ -1,0 +1,11 @@
+<code class="h6 bg-dark p-1 text-warning mt-0 ml-0">Parent Component</code>
+<div class="container bg-light p-4 border border-dark">
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <code class="h6">parentText:&nbsp;</code>
+      <code class="text-primary h5">{{ parentText }}</code>
+    </div>
+  </div>
+  <app-child-one [getTextForChildOne]="parentText"></app-child-one>
+  <app-child-two [getTextForChildTwo]="parentText"></app-child-two>
+</div>
