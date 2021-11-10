@@ -18,6 +18,10 @@ export class BasicDemosComponent implements OnInit {
     '27. Projecting the HTML Content written between the component using ng-content in Angular.',
     '31. Getting access to the ng-content HTML template using @ContentChild in Angular.',
     '32. Create Basic Custom attribute Directive in Angular',
+    '34. Accessing the events for the directive element using HostListener in Angular',
+    '35. Using HostBinding Decorator to bind the Properties for the Directive element in the Angular.',
+    '36. Sending input data to the Directives as Input properties in the Angular.',
+    '38. Create Custom Structural Directives using templateRef and ViewContainerRef',
   ];
   conceptsNeedHandsOn: string[] = [
     'StyleUrls & Styles',
@@ -28,6 +32,9 @@ export class BasicDemosComponent implements OnInit {
     'ng-content',
     '@ContentChild() ?',
     'custom-directives ?',
+    '@HostListener() and @HostBinding',
+    'Sending data to Custom directive',
+    'templateRef and ViewContainerRef',
   ];
   constructor() {}
 
