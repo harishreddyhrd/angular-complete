@@ -15,6 +15,7 @@ export class BasicDemosComponent implements OnInit {
     '11. Implement Data Binding in the Angular. Understanding String Interpolation in the Html File.',
     '12. Property Binding in the Angular. Bind Property to the attributes in the angular template.',
     '13. Event Binding in Angular. Handle Click Events in the Angular Explained.',
+    '27. Projecting the HTML Content written between the component using ng-content in Angular.',
   ];
   conceptsNeedHandsOn: string[] = [
     'StyleUrls & Styles',
@@ -22,6 +23,7 @@ export class BasicDemosComponent implements OnInit {
     'Data binding - String Interpolation',
     'Property Binding',
     'Event Binding',
+    'ng-content',
   ];
   constructor() {}
 

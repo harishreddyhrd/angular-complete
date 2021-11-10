@@ -11,5 +11,6 @@ export class MyDoubts {
     '@Input() & @Output() - Revise',
     'View-encapsulation?',
     'Emulated, None, Shadow DOM?',
+    'ng-content, ngProjectAs',
   ];
 }
