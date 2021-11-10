@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { MyDoubts } from './my-doubts/my-doubts.component';
 import { UsersComponent } from './users/users.component';
 import { BasicDemosComponent } from './basic-demos/basic-demos.component';
+import { ApplyGreenBackgroundDirective } from './directives/apply-green-background.directive';
 
 @NgModule({
-  declarations: [AppComponent, MyDoubts, UsersComponent, BasicDemosComponent],
+  declarations: [AppComponent, MyDoubts, UsersComponent, BasicDemosComponent, ApplyGreenBackgroundDirective],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

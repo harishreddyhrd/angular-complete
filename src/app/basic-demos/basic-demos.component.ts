@@ -16,6 +16,8 @@ export class BasicDemosComponent implements OnInit {
     '12. Property Binding in the Angular. Bind Property to the attributes in the angular template.',
     '13. Event Binding in Angular. Handle Click Events in the Angular Explained.',
     '27. Projecting the HTML Content written between the component using ng-content in Angular.',
+    '31. Getting access to the ng-content HTML template using @ContentChild in Angular.',
+    '32. Create Basic Custom attribute Directive in Angular',
   ];
   conceptsNeedHandsOn: string[] = [
     'StyleUrls & Styles',
@@ -24,6 +26,8 @@ export class BasicDemosComponent implements OnInit {
     'Property Binding',
     'Event Binding',
     'ng-content',
+    '@ContentChild() ?',
+    'custom-directives ?',
   ];
   constructor() {}
 

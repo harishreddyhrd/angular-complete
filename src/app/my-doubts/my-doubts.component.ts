@@ -12,5 +12,6 @@ export class MyDoubts {
     'View-encapsulation?',
     'Emulated, None, Shadow DOM?',
     'ng-content, ngProjectAs',
+    '@ViewChild() vs @ContentChild - differences?',
   ];
 }
