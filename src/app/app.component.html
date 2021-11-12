@@ -1,8 +1,36 @@
 <div class="container-fluid">
-  <div class="row">
-    <h1 class="display-4 bg-light p-5">{{ title }}</h1>
-  </div>
-  <div class="row">
-    <div class="alert alert-primary px-5">{{ description }}</div>
+  <div class="row min-vh-100">
+    <div class="col-md-3 p-5 bg-dark text-warning">
+      <ul class="nav flex-column nav-pills">
+        <li class="li nav-item h4 mb-3">
+          <a
+            class="nav-link text-light"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="li nav-item h4 mb-3">
+          <a
+            class="nav-link text-light"
+            routerLink="/users"
+            routerLinkActive="active"
+            >Users</a
+          >
+        </li>
+        <li class="li nav-item h4 mb-3">
+          <a
+            class="nav-link text-light"
+            [routerLink]="['/categories']"
+            routerLinkActive="active"
+            >Categories</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9 p-5 bg-light">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
