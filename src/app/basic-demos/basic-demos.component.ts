@@ -35,6 +35,7 @@ export class BasicDemosComponent implements OnInit {
     '@HostListener() and @HostBinding',
     'Sending data to Custom directive',
     'templateRef and ViewContainerRef',
+    'Services',
   ];
   constructor() {}
 
