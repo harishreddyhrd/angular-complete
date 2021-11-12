@@ -1,27 +1,34 @@
-User Id extracted from the Route
-<h3 class="p-4">{{ userId }}</h3>
-User Name extracted from the Route
-<h1 class="p-4">{{ userName }}</h1>
-<button
-  class="btn btn-primary my-3 d-block"
-  [routerLink]="['/users', 1, 'HarishReddy']"
->
-  Go to /users/1/HarishReddy and Change the details above
-</button>
-<div class="p-5 border border-success mb-3">
-  <h3 class="text-success">From HTML Template Go to Below URL</h3>
-  <button
-    class="btn btn-success my-3 d-block"
-    [routerLink]="['/users', '2', 'Krishna']"
-    [queryParams]="{ page: 1, search: 'date-of-birth' }"
-    [fragment]="'loading'"
-  >
-    /users/2/Krishna?page=1&search='date-of-birth'#loading
-  </button>
-</div>
-<div class="p-5 border border-danger mb-3">
-  <h3 class="text-danger">From TS file Go to Below URL</h3>
-  <button class="btn btn-danger my-3 d-block" (click)="navigateToBalu()">
-    /users/3/Balu?page=1&search='height'#refresh
-  </button>
+<div class="row">
+  <div class="col-md-6">
+    <button
+      class="btn btn-primary my-3 d-block"
+      [routerLink]="['/users', 1, 'HarishReddy']"
+    >
+      Go to /users/1/HarishReddy and Change the details rightside
+    </button>
+    <div class="p-5 border border-success mb-3">
+      <h3 class="text-success">From HTML Template Go to Below URL</h3>
+      <button
+        class="btn btn-success my-3 d-block"
+        [routerLink]="['/users', '2', 'Krishna']"
+        [queryParams]="{ page: 1, search: 'date-of-birth' }"
+        [fragment]="'loading'"
+      >
+        /users/2/Krishna?page=1&search='date-of-birth'#loading
+      </button>
+    </div>
+    <div class="p-5 border border-danger mb-3">
+      <h3 class="text-danger">From TS file Go to Below URL</h3>
+      <button class="btn btn-danger my-3 d-block" (click)="navigateToBalu()">
+        /users/3/Balu?page=1&search='height'#refresh
+      </button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="bg-dark p-3">
+      <code class="text-light">
+        {{ url | json }}
+      </code>
+    </div>
+  </div>
 </div>

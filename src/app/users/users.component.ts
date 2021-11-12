@@ -7,8 +7,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  userId!: number;
-  userName!: string;
+  url: any = {
+    id: '',
+    name: '',
+    qParams: {},
+    fragment: '',
+  };
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router
@@ -18,8 +22,14 @@ export class UsersComponent implements OnInit {
     // this.userId = this._activatedRoute.snapshot.params['id'];
     // this.userName = this._activatedRoute.snapshot.params['name'];
     this._activatedRoute.params.subscribe((params: Params) => {
-      this.userId = params.id;
-      this.userName = params.name;
+      this.url.id = params.id;
+      this.url.name = params.name;
+    });
+    this._activatedRoute.queryParams.subscribe((qParams) => {
+      this.url.qParams = qParams;
+    });
+    this._activatedRoute.fragment.subscribe((fragment) => {
+      this.url.fragment = fragment;
     });
   }
 
