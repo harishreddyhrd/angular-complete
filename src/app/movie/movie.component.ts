@@ -8,10 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MovieComponent implements OnInit {
   movieName: any;
-  constructor(private _route: ActivatedRoute) {}
+  constructor(private _activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this._route.params.subscribe((data) => {
+    this._activatedRoute.params.subscribe((data) => {
       this.movieName = data.name;
     });
   }
