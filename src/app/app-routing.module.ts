@@ -5,13 +5,17 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UsersComponent } from './users/users.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieComponent } from './movie/movie.component';
+import { EditMovieComponent } from './edit-movie/edit-movie.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'movies',
     component: MoviesComponent,
-    children: [{ path: ':id/:name', component: MovieComponent }],
+    children: [
+      { path: ':id/:name', component: MovieComponent },
+      { path: ':id/:name/edit', component: EditMovieComponent },
+    ],
   },
   { path: 'users', component: UsersComponent },
   { path: 'users/:id/:name', component: UsersComponent },

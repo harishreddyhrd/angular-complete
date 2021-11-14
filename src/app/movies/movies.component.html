@@ -3,6 +3,7 @@
     <a
       class="nav-link text-success"
       [routerLink]="['/movies', 1, 'ala-vaikuntapuramulo']"
+      [queryParams]="{ page: 1, search: 'telugu' }"
       >AVP</a
     >
   </li>
@@ -10,11 +11,26 @@
     <a
       class="nav-link text-danger"
       [routerLink]="['/movies', 2, 'sarileru-neekevvaru']"
+      [queryParams]="{ page: 1, search: 'telugu' }"
       >SNK</a
     >
   </li>
   <li class="nav-item">
-    <a class="nav-link" [routerLink]="['/movies', 3, 'raja-raja-chora']">RRC</a>
+    <a
+      class="nav-link"
+      [routerLink]="['/movies', 3, 'raja-raja-chora']"
+      [queryParams]="{ page: 1, search: 'telugu' }"
+      >RRC</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [routerLink]="['/movies', 1, 'telugu']"
+      [queryParams]="{ page: 1, search: 'telugu' }"
+      [fragment]="'refresh'"
+      >Telugu Movies</a
+    >
   </li>
 </ul>
 <router-outlet></router-outlet>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
@@ -7,12 +7,37 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./movie.component.scss'],
 })
 export class MovieComponent implements OnInit {
-  movieName: any;
-  constructor(private _activatedRoute: ActivatedRoute) {}
+  movie: any = {
+    id: '',
+    name: '',
+    qParams: {},
+    fragment: '',
+  };
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-    this._activatedRoute.params.subscribe((data) => {
-      this.movieName = data.name;
+    this._activatedRoute.params.subscribe((data: Params) => {
+      console.log(data);
+      this.movie.id = data.id;
+      this.movie.name = data.name;
     });
+    this._activatedRoute.queryParams.subscribe((incomingData) => {
+      console.log(incomingData);
+      this.movie.qParams = incomingData;
+    });
+    this._activatedRoute.fragment.subscribe((incomingData) => {
+      console.log(incomingData);
+      this.movie.fragment = incomingData;
+    });
+  }
+
+  onEdit() {
+    this._router.navigate(['/movies', this.movie.id, this.movie.name, 'edit'], {
+      queryParamsHandling: 'preserve',
+    });
+    alert('Take a look at the URL once after OK');
   }
 }

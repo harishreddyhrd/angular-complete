@@ -8,6 +8,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieComponent } from './movie/movie.component';
+import { EditMovieComponent } from './edit-movie/edit-movie.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MovieComponent } from './movie/movie.component';
     CategoriesComponent,
     HomeComponent,
     MoviesComponent,
-    MovieComponent
+    MovieComponent,
+    EditMovieComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
