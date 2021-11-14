@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieComponent } from './movie/movie.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/:id/:name', component: UsersComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
