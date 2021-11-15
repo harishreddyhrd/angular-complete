@@ -4,6 +4,7 @@
       class="nav-link text-success"
       [routerLink]="['/movies', 1, 'ala-vaikuntapuramulo']"
       [queryParams]="{ page: 1, search: 'telugu' }"
+      (click)="suggestUserToLoginIfNotLoggedIn()"
       >AVP</a
     >
   </li>
@@ -12,6 +13,7 @@
       class="nav-link text-danger"
       [routerLink]="['/movies', 2, 'sarileru-neekevvaru']"
       [queryParams]="{ page: 1, search: 'telugu' }"
+      (click)="suggestUserToLoginIfNotLoggedIn()"
       >SNK</a
     >
   </li>
@@ -20,6 +22,7 @@
       class="nav-link"
       [routerLink]="['/movies', 3, 'raja-raja-chora']"
       [queryParams]="{ page: 1, search: 'telugu' }"
+      (click)="suggestUserToLoginIfNotLoggedIn()"
       >RRC</a
     >
   </li>
@@ -29,8 +32,12 @@
       [routerLink]="['/movies', 1, 'telugu']"
       [queryParams]="{ page: 1, search: 'telugu' }"
       [fragment]="'refresh'"
+      (click)="suggestUserToLoginIfNotLoggedIn()"
       >Telugu Movies</a
     >
   </li>
 </ul>
 <router-outlet></router-outlet>
+<div class="alert alert-warning p-5 h3" *ngIf="displayAlert">
+  Please LOGIN to see the movie details
+</div>
