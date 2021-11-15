@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row min-vh-100">
     <div class="col-md-3 p-5 bg-dark text-warning">
-      <ul class="nav flex-column nav-pills">
+      <ul class="nav d-flex align-items-end flex-column nav-pills">
         <li class="li nav-item h4 mb-3">
           <a
             class="nav-link text-light"
@@ -24,6 +24,7 @@
             class="nav-link text-light"
             [routerLink]="['/movies']"
             routerLinkActive="active"
+            *ngIf="isLoggedIn"
             >Movies</a
           >
         </li>
@@ -34,6 +35,22 @@
             routerLinkActive="active"
             >Categories</a
           >
+        </li>
+        <li class="li nav-item h4 mb-3 mt-5">
+          <button
+            class="nav-link text-primary"
+            *ngIf="!isLoggedIn"
+            (click)="signIn()"
+          >
+            Login
+          </button>
+          <button
+            class="nav-link text-primary"
+            *ngIf="isLoggedIn"
+            (click)="signOut()"
+          >
+            Logout
+          </button>
         </li>
       </ul>
     </div>
