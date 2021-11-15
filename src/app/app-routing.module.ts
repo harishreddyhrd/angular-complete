@@ -8,6 +8,7 @@ import { MovieComponent } from './movie/movie.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ExitGuard } from './guards/exit.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,11 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       { path: ':id/:name', component: MovieComponent },
-      { path: ':id/:name/edit', component: EditMovieComponent },
+      {
+        path: ':id/:name/edit',
+        component: EditMovieComponent,
+        canDeactivate: [ExitGuard],
+      },
     ],
   },
   { path: 'users', component: UsersComponent },
