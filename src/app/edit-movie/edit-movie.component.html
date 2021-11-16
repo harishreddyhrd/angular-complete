@@ -1,1 +1,15 @@
-<p>edit-movie works!</p>
+<form class="d-flex justify-content-between align-items-center">
+  <label for="movie" class="">Edit movie name</label>
+  <input
+    type="text"
+    class="form-control mx-3"
+    name="movie"
+    id="movie"
+    aria-describedby="helpId"
+    placeholder=""
+    [(ngModel)]="updatedMovieDetails.name"
+  />
+  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

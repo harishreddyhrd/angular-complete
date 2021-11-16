@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -7,11 +8,29 @@ import { Observable } from 'rxjs';
   styleUrls: ['./edit-movie.component.scss'],
 })
 export class EditMovieComponent implements OnInit {
-  constructor() {}
+  currentMovieDetails = { id: '', name: '' };
+  updatedMovieDetails = { id: '', name: '' };
 
-  ngOnInit(): void {}
+  constructor(private _activatedRoute: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this._activatedRoute.params.subscribe((data: Params) => {
+      console.log(data);
+      this.currentMovieDetails.name = data.name;
+    });
+    this.updatedMovieDetails = { ...this.currentMovieDetails };
+  }
 
   canExit(): boolean | Promise<boolean> | Observable<boolean> {
-    return confirm('Are you sure want to exit?') ? true : false;
+    console.log(this.updatedMovieDetails, this.currentMovieDetails);
+    if (this.currentMovieDetails.name !== this.updatedMovieDetails.name) {
+      return confirm(
+        'All the unsaved changes would be lost. Are you sure want to exit?'
+      )
+        ? true
+        : false;
+    } else {
+      return true;
+    }
   }
 }
