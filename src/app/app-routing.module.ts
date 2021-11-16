@@ -11,7 +11,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { ExitGuard } from './guards/exit.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    data: { id: 'J20ES5', name: 'Harish', password: 'q2w3e4*' },
+  },
   {
     path: 'movies',
     component: MoviesComponent,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private _router: Router) {}
+  staticRouteData!: Data;
+  constructor(
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._activatedRoute.data.subscribe((incomingData: Data) => {
+      this.staticRouteData = incomingData;
+    });
+  }
 
   navigateToUsers() {
     this._router.navigate(['/users']);

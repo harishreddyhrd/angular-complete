@@ -1,8 +1,16 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-3">
   <button class="btn btn-outline-success m-3" (click)="navigateToUsers()">
     Click to Navigate to Users Page
   </button>
   <button class="btn btn-outline-danger m-3" (click)="navigateToCategories()">
     Click to Navigate to Categories Page
   </button>
+</div>
+<div class="bg-dark p-5">
+  <code class="h3 text-warning d-block mt-3">
+    <pre
+      >{{ staticRouteData | json }}
+</pre
+    >
+  </code>
 </div>
