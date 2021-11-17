@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { interval, Subscription } from 'rxjs';
+import { interval, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import { interval, Subscription } from 'rxjs';
 export class HomeComponent implements OnInit {
   staticRouteData!: Data;
   intervalSubscription!: Subscription;
+  customObservableSubscription!: Subscription;
 
   constructor(
     private _router: Router,
@@ -21,7 +22,20 @@ export class HomeComponent implements OnInit {
       this.staticRouteData = incomingData;
     });
 
-    this.intervalSubscription = interval(1000).subscribe((count) => {
+    // this.intervalSubscription = interval(1000).subscribe((count) => {
+    //   console.log(count);
+    // });
+
+    let customObservable = new Observable((observer) => {
+      let count = 0;
+      setTimeout(() => {
+        observer.next(count);
+        count++;
+      }, 1000);
+    });
+
+    this.customObservableSubscription = customObservable.subscribe((count) => {
+      // console.log(`theCustomObservable: ${count}`);
       console.log(count);
     });
   }
@@ -34,6 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.intervalSubscription.unsubscribe();
+    // this.intervalSubscription.unsubscribe();
+    this.customObservableSubscription.unsubscribe();
   }
 }
