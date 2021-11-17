@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterModule,
+  RouterStateSnapshot,
+  Routes,
+} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { UsersComponent } from './users/users.component';
@@ -9,6 +14,7 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ExitGuard } from './guards/exit.guard';
+import { MovieResolver } from './resolvers/movie.resolver';
 
 const routes: Routes = [
   {
@@ -26,6 +32,7 @@ const routes: Routes = [
         path: ':id/:name/edit',
         component: EditMovieComponent,
         canDeactivate: [ExitGuard],
+        resolve: { movie: MovieResolver },
       },
     ],
   },
@@ -43,5 +50,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [],
 })
 export class AppRoutingModule {}

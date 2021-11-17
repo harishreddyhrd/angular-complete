@@ -12,6 +12,8 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
 
+import { MovieResolver } from './resolvers/movie.resolver';
+
 @NgModule({
   declarations: [
     AppComponent,

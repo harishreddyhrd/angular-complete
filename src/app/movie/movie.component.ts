@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
@@ -19,11 +19,17 @@ export class MovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._activatedRoute.params.subscribe((data: Params) => {
-      console.log(data);
-      this.movie.id = data.id;
-      this.movie.name = data.name;
+    this._activatedRoute.data.subscribe((incomingData: Data) => {
+      console.log(incomingData);
+      this.movie.id = incomingData['id'];
+      this.movie.name = incomingData['name'];
     });
+
+    // this._activatedRoute.params.subscribe((data: Params) => {
+    //   console.log(data);
+    //   this.movie.id = data.id;
+    //   this.movie.name = data.name;
+    // });
     this._activatedRoute.queryParams.subscribe((incomingData) => {
       console.log(incomingData);
       this.movie.qParams = incomingData;

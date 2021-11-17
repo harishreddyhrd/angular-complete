@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
@@ -8,7 +9,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class MoviesComponent implements OnInit {
   displayAlert: boolean = false;
-  constructor(private _authService: AuthService) {}
+  constructor(
+    private _authService: AuthService,
+    private _movieService: MovieService
+  ) {}
 
   ngOnInit(): void {}
 
