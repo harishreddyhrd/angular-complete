@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -40,17 +41,23 @@ export class HomeComponent implements OnInit {
       }, 1000);
     });
 
-    this.customObservableSubscription = customObservable.subscribe(
-      (count) => {
-        console.log(`theCustomObservable :: ${count}`);
-      },
-      (error) => {
-        console.log(`theCustomObservable :: ERROR = ${error}`);
-      },
-      () => {
-        console.log(`Observation complete`);
-      }
-    );
+    this.customObservableSubscription = customObservable
+      .pipe(
+        map((theData) => {
+          return `theCustomObservable :: ${theData}`;
+        })
+      )
+      .subscribe(
+        (count) => {
+          console.log(`${count}`);
+        },
+        (error) => {
+          console.log(`ERROR = ${error}`);
+        },
+        () => {
+          console.log(`Observation complete`);
+        }
+      );
   }
 
   navigateToUsers() {
