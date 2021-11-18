@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     // });
 
     let customObservable: Observable<number> = new Observable((observer) => {
-      let count = 0;
+      let count = -6;
       setInterval(() => {
         observer.next(count);
         if (count > 10) {
@@ -43,6 +43,14 @@ export class HomeComponent implements OnInit {
 
     this.customObservableSubscription = customObservable
       .pipe(
+        filter((theData) => {
+          // return theData > 0 ? true : false;
+          if (theData > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        }),
         map((theData) => {
           return `theCustomObservable :: ${theData}`;
         })
