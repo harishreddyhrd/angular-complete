@@ -3,11 +3,13 @@
     <h1 class="display-4 bg-light p-5">{{ title }}</h1>
   </div>
   <div class="row">
-    <div class="alert alert-primary px-5">{{ description }}</div>
+    <div class="alert alert-primary px-5" *ngIf="description">
+      {{ description }}
+    </div>
   </div>
   <div class="row">
     <div class="bg-light p-5">
-      <app-form-template></app-form-template>
+      <template-driven-form></template-driven-form>
     </div>
   </div>
 </div>
