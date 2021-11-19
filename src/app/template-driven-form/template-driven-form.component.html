@@ -130,13 +130,14 @@
     <div class="mb-3">
       <label for="email">Email</label>
       <input
-        type="text"
+        type="email"
         class="form-control"
         name="email"
         id="email"
         aria-describedby="emailHelp"
         placeholder="Enter Email"
         ngModel
+        (input)="onInputChange()"
       />
       <small id="emailHelp" class="form-text text-muted">Help text</small>
     </div>
