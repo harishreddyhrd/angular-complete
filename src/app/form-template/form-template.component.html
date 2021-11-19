@@ -1,0 +1,184 @@
+<form>
+  <!-- Basic info  -->
+  <div class="mb-5">
+    <h3 class="mb-5">Basic information</h3>
+
+    <!-- First name  -->
+    <div class="mb-3">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        id="firstName"
+        aria-describedby="firstNameHelp"
+        placeholder="Enter first name"
+      />
+      <small id="firstNameHelp" class="form-text text-muted">Help text</small>
+    </div>
+
+    <!-- Last name  -->
+    <div class="mb-3">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="lastName"
+        id="lastName"
+        aria-describedby="lastNameHelp"
+        placeholder="Enter last name"
+      />
+      <small id="lastNameHelp" class="form-text text-muted">Help text</small>
+    </div>
+
+    <!-- Gender  -->
+    <div class="mb-3">
+      <label for="gender">Gender</label>&nbsp;
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="male"
+          id="radioButtonMale"
+          name="gender"
+        />
+        <label class="form-check-label" for="radioButtonMale">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="female"
+          id="radioButtonFemale"
+          name="gender"
+        />
+        <label class="form-check-label" for="radioButtonFemale">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="notSpecified"
+          id="radioButtonGenderNotSpecified"
+          name="gender"
+        />
+        <label class="form-check-label" for="radioButtonGenderNotSpecified"
+          >Not Specified</label
+        >
+      </div>
+    </div>
+
+    <!-- Mobile  -->
+    <div class="mb-3">
+      <label for="mobile">Mobile</label>
+      <input
+        type="number"
+        class="form-control"
+        name="mobile"
+        id="mobile"
+        aria-describedby="mobileHelp"
+        placeholder="Enter mobile number"
+      />
+      <small id="mobileHelp" class="form-text text-muted">Help text</small>
+    </div>
+
+    <!-- DOB -->
+    <div class="mb-3">
+      <label for="date">Date</label>
+      <input
+        type="date"
+        class="form-control date"
+        name="date"
+        id="date"
+        placeholder="Enter date in DD-MM-YYYY format"
+      />
+    </div>
+
+    <!-- Salary Range -->
+    <div class="mb-3">
+      <label for="salary" class="mt-2">Salary (in LPA) </label>
+      <input
+        type="range"
+        class="form-range border-0"
+        name="salary"
+        id="salary"
+        aria-describedby="salaryHelpId"
+        placeholder="Salary in LPA"
+        value="5"
+        step="0.01"
+        min="2"
+        max="15"
+        (input)="mobileHelp.innerHTML = salary.value"
+        #salary
+      />
+      <small #mobileHelp id="mobileHelp" class="form-text text-mute"></small>
+    </div>
+  </div>
+
+  <!-- Login info  -->
+  <div class="mb-5">
+    <h3 class="mb-5">Login information</h3>
+    <!-- Email  -->
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter Email"
+      />
+      <small id="emailHelp" class="form-text text-muted">Help text</small>
+    </div>
+
+    <!-- Password  -->
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input
+        type="text"
+        class="form-control"
+        name="password"
+        id="password"
+        aria-describedby="passwordHelp"
+        placeholder="Enter Password"
+      />
+      <small id="passwordHelp" class="form-text text-muted">Help text</small>
+    </div>
+
+    <!-- Confirm Password  -->
+    <div class="mb-3">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="text"
+        class="form-control"
+        name="confirmPassword"
+        id="confirmPassword"
+        aria-describedby="confirmPasswordHelp"
+        placeholder="Confirm password"
+      />
+      <small id="confirmPasswordHelp" class="form-text text-muted"
+        >Help text</small
+      >
+    </div>
+  </div>
+
+  <!-- isAdmin  -->
+  <div class="mb-5">
+    <label for="adminAccess" class="h3 mb-3">Admin Rights</label>&nbsp;
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="adminAccess"
+      />
+      <label class="form-check-label" for="adminAccess"
+        >Provide admin access to this user</label
+      >
+    </div>
+  </div>
+
+  <!-- Submit  -->
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
