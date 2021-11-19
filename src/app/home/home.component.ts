@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _movieService: MovieService
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +70,10 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  sendToMovies() {
+    this._movieService.setAuthor('HarishReddy');
+    this._router.navigate(['/movies']);
+  }
   navigateToUsers() {
     this._router.navigate(['/users']);
   }
