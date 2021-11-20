@@ -28,6 +28,24 @@ export class TemplateDrivenFormComponent implements OnInit {
     console.log(form.value);
   }
 
+  //Fill the form
+  fillTheFormWithDefaultValues() {
+    this.userFormData.form.setValue({
+      dateOfBirth: '2002-05-31',
+      firstName: 'Harish',
+      gender: 'male',
+      isAdmin: true,
+      lastName: 'Reddy',
+      loginInformation: {
+        email: 'harish.reddy@gmail.com',
+        password: 'Wipro@123',
+        confirmPassword: 'Wipro@123',
+      },
+      mobile: '9493000703',
+      salary: 4.25,
+    });
+  }
+
   //ERRORS
   showErrorsForEmail() {
     const emailPlaceHolder = this.userFormData?.controls?.email;

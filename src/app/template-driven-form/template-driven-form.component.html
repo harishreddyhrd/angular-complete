@@ -1,3 +1,10 @@
+<button
+  type="button"
+  class="btn btn-success mb-5"
+  (click)="fillTheFormWithDefaultValues()"
+>
+  Set default form Values
+</button>
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
   <!-- Basic info  -->
   <div class="mb-5">
@@ -94,7 +101,7 @@
       <input
         type="date"
         class="form-control date"
-        name="date"
+        name="dateOfBirth"
         id="date"
         placeholder="Enter date in DD-MM-YYYY format"
         ngModel
@@ -119,7 +126,9 @@
         (input)="mobileHelp.innerHTML = salary.value"
         #salary
       />
-      <small #mobileHelp id="mobileHelp" class="form-text text-mute"></small>
+      <small #mobileHelp id="mobileHelp" class="form-text text-mute">{{
+        userForm.controls?.salary?.value
+      }}</small>
     </div>
   </div>
 
