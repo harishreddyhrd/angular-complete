@@ -29,7 +29,7 @@ export class TemplateDrivenFormComponent implements OnInit {
   }
 
   //Fill the form
-  fillTheFormWithDefaultValues() {
+  setTheFormWithDefaultValues() {
     this.userFormData.form.setValue({
       dateOfBirth: '2002-05-31',
       firstName: 'Harish',
@@ -43,6 +43,16 @@ export class TemplateDrivenFormComponent implements OnInit {
       },
       mobile: '9493000703',
       salary: 4.25,
+    });
+  }
+
+  patchTheFormWithDefaultValues() {
+    this.userFormData.form.patchValue({
+      loginInformation: {
+        email: 'harish.reddy@gmail.com',
+        password: 'Wipro@123',
+        confirmPassword: 'Wipro@123',
+      },
     });
   }
 
