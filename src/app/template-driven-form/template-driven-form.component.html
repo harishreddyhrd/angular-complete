@@ -150,32 +150,51 @@
     <!-- Password  -->
     <div class="mb-3">
       <label for="password">Password</label>
-      <input
-        type="text"
-        class="form-control"
-        name="password"
-        id="password"
-        aria-describedby="passwordHelp"
-        placeholder="Enter Password"
-        [(ngModel)]="defaultPassword"
-        required
-      />
+      <div class="input-group">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          class="form-control"
+          name="password"
+          id="password"
+          aria-describedby="passwordHelp"
+          placeholder="Enter Password"
+          [(ngModel)]="defaultPassword"
+          required
+        />
+        <div class="input-group-text" (click)="showPassword = !showPassword">
+          <i
+            class="fa"
+            [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+          ></i>
+        </div>
+      </div>
       <small id="passwordHelp" class="form-text text-danger">Help text</small>
     </div>
 
     <!-- Confirm Password  -->
     <div class="mb-3">
       <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="text"
-        class="form-control"
-        name="confirmPassword"
-        id="confirmPassword"
-        aria-describedby="confirmPasswordHelp"
-        placeholder="Confirm password"
-        [ngModel]="defaultPassword"
-        required
-      />
+      <div class="input-group">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          class="form-control"
+          name="confirmPassword"
+          id="confirmPassword"
+          aria-describedby="confirmPasswordHelp"
+          placeholder="Confirm password"
+          [ngModel]="defaultPassword"
+          required
+        />
+        <div
+          class="input-group-text"
+          (click)="showConfirmPassword = !showConfirmPassword"
+        >
+          <i
+            class="fa"
+            [ngClass]="showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'"
+          ></i>
+        </div>
+      </div>
       <small id="confirmPasswordHelp" class="form-text text-danger"
         >Help text</small
       >

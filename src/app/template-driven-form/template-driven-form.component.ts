@@ -8,6 +8,8 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateDrivenFormComponent implements OnInit {
   defaultPassword: string = 'Wipro@123';
+  showPassword: boolean = true;
+  showConfirmPassword: boolean = true;
   constructor() {}
 
   @ViewChild('userForm') userFormData!: NgForm;
