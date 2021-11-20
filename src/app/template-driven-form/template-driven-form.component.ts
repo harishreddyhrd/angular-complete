@@ -24,4 +24,20 @@ export class TemplateDrivenFormComponent implements OnInit {
     // console.log(form);
     console.log(form.value);
   }
+
+  //ERRORS
+  showErrorsForEmail() {
+    const emailPlaceHolder = this.userFormData?.controls?.email;
+    if (emailPlaceHolder?.touched && emailPlaceHolder?.invalid) {
+      if (emailPlaceHolder.errors?.required) {
+        return 'Email is required';
+      } else if (emailPlaceHolder.errors?.email) {
+        return 'Invalid email';
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
+  }
 }

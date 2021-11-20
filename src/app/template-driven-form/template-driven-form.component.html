@@ -15,7 +15,7 @@
         placeholder="Enter first name"
         ngModel
       />
-      <small id="firstNameHelp" class="form-text text-muted">Help text</small>
+      <small id="firstNameHelp" class="form-text text-danger">Help text</small>
     </div>
 
     <!-- Last name  -->
@@ -30,7 +30,7 @@
         placeholder="Enter last name"
         ngModel
       />
-      <small id="lastNameHelp" class="form-text text-muted">Help text</small>
+      <small id="lastNameHelp" class="form-text text-danger">Help text</small>
     </div>
 
     <!-- Gender  -->
@@ -85,7 +85,7 @@
         placeholder="Enter mobile number"
         ngModel
       />
-      <small id="mobileHelp" class="form-text text-muted">Help text</small>
+      <small id="mobileHelp" class="form-text text-danger">Help text</small>
     </div>
 
     <!-- DOB -->
@@ -140,8 +140,11 @@
         (input)="onInputChange()"
         required
         email
+        [class.is-invalid]="showErrorsForEmail()"
       />
-      <small id="emailHelp" class="form-text text-muted">Help text</small>
+      <small id="emailHelp" class="form-text text-danger">{{
+        showErrorsForEmail()
+      }}</small>
     </div>
 
     <!-- Password  -->
@@ -157,7 +160,7 @@
         ngModel
         required
       />
-      <small id="passwordHelp" class="form-text text-muted">Help text</small>
+      <small id="passwordHelp" class="form-text text-danger">Help text</small>
     </div>
 
     <!-- Confirm Password  -->
@@ -173,7 +176,7 @@
         ngModel
         required
       />
-      <small id="confirmPasswordHelp" class="form-text text-muted"
+      <small id="confirmPasswordHelp" class="form-text text-danger"
         >Help text</small
       >
     </div>
