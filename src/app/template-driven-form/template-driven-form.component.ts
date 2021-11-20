@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./template-driven-form.component.scss'],
 })
 export class TemplateDrivenFormComponent implements OnInit {
+  defaultPassword: string = 'Wipro@123';
   constructor() {}
 
   @ViewChild('userForm') userFormData!: NgForm;
