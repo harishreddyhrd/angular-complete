@@ -10,6 +10,7 @@ export class TemplateDrivenFormComponent implements OnInit {
   defaultPassword: string = 'Wipro@123';
   showPassword: boolean = true;
   showConfirmPassword: boolean = true;
+  savedFormData: any;
   constructor() {}
 
   @ViewChild('userForm') userFormData!: NgForm;
@@ -26,6 +27,7 @@ export class TemplateDrivenFormComponent implements OnInit {
   onSubmit(form: NgForm) {
     // console.log(form);
     console.log(form.value);
+    this.savedFormData = form.value;
   }
 
   //Fill the form
