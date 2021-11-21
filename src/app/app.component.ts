@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Template driven form';
-  description = 'Demo of TD form';
+  title = 'Reactive Form';
+  description = 'Demo of reactive form';
 }
