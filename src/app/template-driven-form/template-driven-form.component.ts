@@ -28,6 +28,7 @@ export class TemplateDrivenFormComponent implements OnInit {
     // console.log(form);
     console.log(form.value);
     this.savedFormData = form.value;
+    this.userFormData.reset();
   }
 
   //Fill the form
