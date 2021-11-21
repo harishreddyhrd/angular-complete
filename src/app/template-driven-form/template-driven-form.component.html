@@ -1,250 +1,278 @@
-<div class="mb-5">
-  <div class="row">
-    <div class="col-12 col-md-3 offset-md-3 mb-2">
-      <button
-        type="button"
-        class="w-100 btn btn-success float-md-end"
-        (click)="setTheFormWithDefaultValues()"
-      >
-        Set default form Values
-      </button>
+<div class="row">
+  <div class="col-md-6 mb-5">
+    <div class="mb-5">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 mb-2">
+          <button
+            type="button"
+            class="w-100 btn btn-success float-md-end"
+            (click)="setTheFormWithDefaultValues()"
+          >
+            Set default values
+          </button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button
+            type="button"
+            class="w-100 btn btn-warning"
+            (click)="patchTheFormWithDefaultValues()"
+          >
+            Patch default values
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="col-12 col-md-3">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+      <!-- Basic info  -->
+      <div class="mb-5">
+        <h3 class="mb-5">Basic information</h3>
+
+        <!-- First name  -->
+        <div class="mb-3">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            id="firstName"
+            aria-describedby="firstNameHelp"
+            placeholder="Enter first name"
+            ngModel
+          />
+          <small id="firstNameHelp" class="form-text text-danger"
+            >Help text</small
+          >
+        </div>
+
+        <!-- Last name  -->
+        <div class="mb-3">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            id="lastName"
+            aria-describedby="lastNameHelp"
+            placeholder="Enter last name"
+            ngModel
+          />
+          <small id="lastNameHelp" class="form-text text-danger"
+            >Help text</small
+          >
+        </div>
+
+        <!-- Gender  -->
+        <div class="mb-3">
+          <label for="gender">Gender</label>&nbsp;
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="male"
+              id="radioButtonMale"
+              name="gender"
+              ngModel
+            />
+            <label class="form-check-label" for="radioButtonMale">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="female"
+              id="radioButtonFemale"
+              name="gender"
+              ngModel
+            />
+            <label class="form-check-label" for="radioButtonFemale"
+              >Female</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="notSpecified"
+              id="radioButtonGenderNotSpecified"
+              name="gender"
+              ngModel
+            />
+            <label class="form-check-label" for="radioButtonGenderNotSpecified"
+              >Not Specified</label
+            >
+          </div>
+        </div>
+
+        <!-- Mobile  -->
+        <div class="mb-3">
+          <label for="mobile">Mobile</label>
+          <input
+            type="number"
+            class="form-control"
+            name="mobile"
+            id="mobile"
+            aria-describedby="mobileHelp"
+            placeholder="Enter mobile number"
+            ngModel
+          />
+          <small id="mobileHelp" class="form-text text-danger">Help text</small>
+        </div>
+
+        <!-- DOB -->
+        <div class="mb-3">
+          <label for="date">Date</label>
+          <input
+            type="date"
+            class="form-control date"
+            name="dateOfBirth"
+            id="date"
+            placeholder="Enter date in DD-MM-YYYY format"
+            ngModel
+          />
+        </div>
+
+        <!-- Salary Range -->
+        <div class="mb-3">
+          <label for="salary" class="mt-2">Salary (in LPA) </label>
+          <input
+            type="range"
+            class="form-range border-0"
+            name="salary"
+            id="salary"
+            aria-describedby="salaryHelpId"
+            placeholder="Salary in LPA"
+            ngModel
+            value="5"
+            step="0.01"
+            min="2"
+            max="15"
+            (input)="mobileHelp.innerHTML = salary.value"
+            #salary
+          />
+          <small #mobileHelp id="mobileHelp" class="form-text text-mute">{{
+            userForm.controls?.salary?.value
+          }}</small>
+        </div>
+      </div>
+
+      <!-- Login info  -->
+      <div class="mb-5" ngModelGroup="loginInformation">
+        <h3 class="mb-5">Login information</h3>
+        <!-- Email  -->
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter Email"
+            ngModel
+            (input)="onInputChange()"
+            required
+            email
+            [class.is-invalid]="showErrorsForEmail()"
+          />
+          <small id="emailHelp" class="form-text text-danger">{{
+            showErrorsForEmail()
+          }}</small>
+        </div>
+
+        <!-- Password  -->
+        <div class="mb-3">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              name="password"
+              id="password"
+              aria-describedby="passwordHelp"
+              placeholder="Enter Password"
+              [(ngModel)]="defaultPassword"
+              required
+            />
+            <div
+              class="input-group-text"
+              (click)="showPassword = !showPassword"
+            >
+              <i
+                class="fa"
+                [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+              ></i>
+            </div>
+          </div>
+          <small id="passwordHelp" class="form-text text-danger"
+            >Help text</small
+          >
+        </div>
+
+        <!-- Confirm Password  -->
+        <div class="mb-3">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-group">
+            <input
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              class="form-control"
+              name="confirmPassword"
+              id="confirmPassword"
+              aria-describedby="confirmPasswordHelp"
+              placeholder="Confirm password"
+              [ngModel]="defaultPassword"
+              required
+            />
+            <div
+              class="input-group-text"
+              (click)="showConfirmPassword = !showConfirmPassword"
+            >
+              <i
+                class="fa"
+                [ngClass]="showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'"
+              ></i>
+            </div>
+          </div>
+          <small id="confirmPasswordHelp" class="form-text text-danger"
+            >Help text</small
+          >
+        </div>
+      </div>
+
+      <!-- isAdmin  -->
+      <div class="mb-5">
+        <label for="adminAccess" class="h3 mb-3">Admin Rights</label>&nbsp;
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="adminAccess"
+            name="isAdmin"
+            ngModel
+          />
+          <label class="form-check-label" for="adminAccess"
+            >Provide admin access to this user</label
+          >
+        </div>
+      </div>
+
+      <!-- Submit  -->
       <button
-        type="button"
-        class="w-100 btn btn-warning"
-        (click)="patchTheFormWithDefaultValues()"
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="userForm.invalid"
       >
-        Patch default form Values
+        Submit
       </button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="bg-dark text-info p-5">
+      <pre>
+<code>
+{{userForm.value | json}}
+</code>
+      </pre>
     </div>
   </div>
 </div>
-<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-  <!-- Basic info  -->
-  <div class="mb-5">
-    <h3 class="mb-5">Basic information</h3>
-
-    <!-- First name  -->
-    <div class="mb-3">
-      <label for="firstName">First Name</label>
-      <input
-        type="text"
-        class="form-control"
-        name="firstName"
-        id="firstName"
-        aria-describedby="firstNameHelp"
-        placeholder="Enter first name"
-        ngModel
-      />
-      <small id="firstNameHelp" class="form-text text-danger">Help text</small>
-    </div>
-
-    <!-- Last name  -->
-    <div class="mb-3">
-      <label for="lastName">Last Name</label>
-      <input
-        type="text"
-        class="form-control"
-        name="lastName"
-        id="lastName"
-        aria-describedby="lastNameHelp"
-        placeholder="Enter last name"
-        ngModel
-      />
-      <small id="lastNameHelp" class="form-text text-danger">Help text</small>
-    </div>
-
-    <!-- Gender  -->
-    <div class="mb-3">
-      <label for="gender">Gender</label>&nbsp;
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          value="male"
-          id="radioButtonMale"
-          name="gender"
-          ngModel
-        />
-        <label class="form-check-label" for="radioButtonMale">Male</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          value="female"
-          id="radioButtonFemale"
-          name="gender"
-          ngModel
-        />
-        <label class="form-check-label" for="radioButtonFemale">Female</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          value="notSpecified"
-          id="radioButtonGenderNotSpecified"
-          name="gender"
-          ngModel
-        />
-        <label class="form-check-label" for="radioButtonGenderNotSpecified"
-          >Not Specified</label
-        >
-      </div>
-    </div>
-
-    <!-- Mobile  -->
-    <div class="mb-3">
-      <label for="mobile">Mobile</label>
-      <input
-        type="number"
-        class="form-control"
-        name="mobile"
-        id="mobile"
-        aria-describedby="mobileHelp"
-        placeholder="Enter mobile number"
-        ngModel
-      />
-      <small id="mobileHelp" class="form-text text-danger">Help text</small>
-    </div>
-
-    <!-- DOB -->
-    <div class="mb-3">
-      <label for="date">Date</label>
-      <input
-        type="date"
-        class="form-control date"
-        name="dateOfBirth"
-        id="date"
-        placeholder="Enter date in DD-MM-YYYY format"
-        ngModel
-      />
-    </div>
-
-    <!-- Salary Range -->
-    <div class="mb-3">
-      <label for="salary" class="mt-2">Salary (in LPA) </label>
-      <input
-        type="range"
-        class="form-range border-0"
-        name="salary"
-        id="salary"
-        aria-describedby="salaryHelpId"
-        placeholder="Salary in LPA"
-        ngModel
-        value="5"
-        step="0.01"
-        min="2"
-        max="15"
-        (input)="mobileHelp.innerHTML = salary.value"
-        #salary
-      />
-      <small #mobileHelp id="mobileHelp" class="form-text text-mute">{{
-        userForm.controls?.salary?.value
-      }}</small>
-    </div>
-  </div>
-
-  <!-- Login info  -->
-  <div class="mb-5" ngModelGroup="loginInformation">
-    <h3 class="mb-5">Login information</h3>
-    <!-- Email  -->
-    <div class="mb-3">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        id="email"
-        aria-describedby="emailHelp"
-        placeholder="Enter Email"
-        ngModel
-        (input)="onInputChange()"
-        required
-        email
-        [class.is-invalid]="showErrorsForEmail()"
-      />
-      <small id="emailHelp" class="form-text text-danger">{{
-        showErrorsForEmail()
-      }}</small>
-    </div>
-
-    <!-- Password  -->
-    <div class="mb-3">
-      <label for="password">Password</label>
-      <div class="input-group">
-        <input
-          [type]="showPassword ? 'text' : 'password'"
-          class="form-control"
-          name="password"
-          id="password"
-          aria-describedby="passwordHelp"
-          placeholder="Enter Password"
-          [(ngModel)]="defaultPassword"
-          required
-        />
-        <div class="input-group-text" (click)="showPassword = !showPassword">
-          <i
-            class="fa"
-            [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
-          ></i>
-        </div>
-      </div>
-      <small id="passwordHelp" class="form-text text-danger">Help text</small>
-    </div>
-
-    <!-- Confirm Password  -->
-    <div class="mb-3">
-      <label for="confirmPassword">Confirm Password</label>
-      <div class="input-group">
-        <input
-          [type]="showConfirmPassword ? 'text' : 'password'"
-          class="form-control"
-          name="confirmPassword"
-          id="confirmPassword"
-          aria-describedby="confirmPasswordHelp"
-          placeholder="Confirm password"
-          [ngModel]="defaultPassword"
-          required
-        />
-        <div
-          class="input-group-text"
-          (click)="showConfirmPassword = !showConfirmPassword"
-        >
-          <i
-            class="fa"
-            [ngClass]="showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'"
-          ></i>
-        </div>
-      </div>
-      <small id="confirmPasswordHelp" class="form-text text-danger"
-        >Help text</small
-      >
-    </div>
-  </div>
-
-  <!-- isAdmin  -->
-  <div class="mb-5">
-    <label for="adminAccess" class="h3 mb-3">Admin Rights</label>&nbsp;
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="adminAccess"
-        name="isAdmin"
-        ngModel
-      />
-      <label class="form-check-label" for="adminAccess"
-        >Provide admin access to this user</label
-      >
-    </div>
-  </div>
-
-  <!-- Submit  -->
-  <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
-    Submit
-  </button>
-</form>
