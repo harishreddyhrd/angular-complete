@@ -54,38 +54,25 @@
         <!-- Gender  -->
         <div class="mb-3">
           <label for="gender">Gender</label>&nbsp;
-          <div class="form-check form-check-inline">
+          <div
+            class="form-check form-check-inline"
+            *ngFor="let gender of gendersList"
+          >
             <input
               class="form-check-input"
               type="radio"
-              value="male"
-              id="radioButtonMale"
+              [value]="gender"
+              id="{{
+                ('radioButton' + (gender | titlecase)).split(' ').join('')
+              }}"
               name="gender"
             />
-            <label class="form-check-label" for="radioButtonMale">Male</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              value="female"
-              id="radioButtonFemale"
-              name="gender"
-            />
-            <label class="form-check-label" for="radioButtonFemale"
-              >Female</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              value="notSpecified"
-              id="radioButtonGenderNotSpecified"
-              name="gender"
-            />
-            <label class="form-check-label" for="radioButtonGenderNotSpecified"
-              >Not Specified</label
+            <label
+              class="form-check-label"
+              for="{{
+                ('radioButton' + (gender | titlecase)).split(' ').join('')
+              }}"
+              >{{ gender | titlecase }}</label
             >
           </div>
         </div>
