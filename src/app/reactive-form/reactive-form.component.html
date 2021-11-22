@@ -141,8 +141,11 @@
             id="email"
             aria-describedby="emailHelp"
             placeholder="Enter Email"
+            [class.is-invalid]="showErrorsForEmail()"
           />
-          <small id="emailHelp" class="form-text text-danger">emailHelp</small>
+          <small id="emailHelp" class="form-text text-danger">{{
+            showErrorsForEmail()
+          }}</small>
         </div>
 
         <!-- Password  -->

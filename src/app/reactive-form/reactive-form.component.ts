@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormGroupName } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupName,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'reactive-form',
@@ -22,8 +27,11 @@ export class ReactiveFormComponent implements OnInit {
     dateOfBirth: new FormControl('2002-05-31'),
     salary: new FormControl(4.25),
     loginInformation: new FormGroup({
-      email: new FormControl('harish.reddy@gmail.com'),
-      password: new FormControl('Wipro@123'),
+      email: new FormControl('harish.reddy@gmail.com', [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl('Wipro@123', [Validators.required]),
       confirmPassword: new FormControl('Wipro@123'),
     }),
     isAdmin: new FormControl(true),
@@ -31,11 +39,36 @@ export class ReactiveFormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(
+    //   this.userDataReactiveForm.get('loginInformation')?.get('email')
+    // );
+  }
 
   onSubmit() {
     // console.log(this.userDataReactiveForm);
     console.log(this.userDataReactiveForm.value);
     this.savedFormData = this.userDataReactiveForm.value;
+  }
+
+  //ERRORS
+  showErrorsForEmail() {
+    const emailPlaceHolder = this.userDataReactiveForm?.get(
+      'loginInformation.email'
+    );
+    // const emailPlaceHolder = this.userDataReactiveForm
+    //   ?.get('loginInformation')
+    //   ?.get('email');
+    if (emailPlaceHolder?.touched && emailPlaceHolder?.invalid) {
+      if (emailPlaceHolder.errors?.required) {
+        return 'Email is required';
+      } else if (emailPlaceHolder.errors?.email) {
+        return 'Invalid email';
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
   }
 }
