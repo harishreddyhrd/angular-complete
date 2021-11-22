@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupName } from '@angular/forms';
 
 @Component({
   selector: 'reactive-form',
@@ -11,6 +11,8 @@ export class ReactiveFormComponent implements OnInit {
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
+
+  savedFormData!: any;
 
   userDataReactiveForm: FormGroup = new FormGroup({
     firstName: new FormControl('Harish'),
@@ -30,4 +32,10 @@ export class ReactiveFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    // console.log(this.userDataReactiveForm);
+    console.log(this.userDataReactiveForm.value);
+    this.savedFormData = this.userDataReactiveForm.value;
+  }
 }

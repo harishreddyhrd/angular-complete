@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <form>
+    <form [formGroup]="userDataReactiveForm" (ngSubmit)="onSubmit()">
       <!-- Basic info  -->
       <div class="mb-5">
         <h3 class="mb-5">Basic information</h3>
@@ -25,7 +25,7 @@
           <input
             type="text"
             class="form-control"
-            name="firstName"
+            formControlName="firstName"
             id="firstName"
             aria-describedby="firstNameHelp"
             placeholder="Enter first name"
@@ -41,7 +41,7 @@
           <input
             type="text"
             class="form-control"
-            name="lastName"
+            formControlName="lastName"
             id="lastName"
             aria-describedby="lastNameHelp"
             placeholder="Enter last name"
@@ -65,7 +65,7 @@
               id="{{
                 ('radioButton' + (gender | titlecase)).split(' ').join('')
               }}"
-              name="gender"
+              formControlName="gender"
             />
             <label
               class="form-check-label"
@@ -83,7 +83,7 @@
           <input
             type="number"
             class="form-control"
-            name="mobile"
+            formControlName="mobile"
             id="mobile"
             aria-describedby="mobileHelp"
             placeholder="Enter mobile number"
@@ -99,7 +99,7 @@
           <input
             type="date"
             class="form-control date"
-            name="dateOfBirth"
+            formControlName="dateOfBirth"
             id="dateOfBirth"
             placeholder="Enter date in DD-MM-YYYY format"
           />
@@ -111,7 +111,7 @@
           <input
             type="range"
             class="form-range border-0"
-            name="salary"
+            formControlName="salary"
             id="salary"
             aria-describedby="salaryHelpId"
             placeholder="Salary in LPA"
@@ -129,7 +129,7 @@
       </div>
 
       <!-- Login info  -->
-      <div class="mb-5">
+      <div class="mb-5" formGroupName="loginInformation">
         <h3 class="mb-5">Login information</h3>
         <!-- Email  -->
         <div class="mb-3">
@@ -137,7 +137,7 @@
           <input
             type="email"
             class="form-control"
-            name="email"
+            formControlName="email"
             id="email"
             aria-describedby="emailHelp"
             placeholder="Enter Email"
@@ -152,7 +152,7 @@
             <input
               [type]="showPassword ? 'text' : 'password'"
               class="form-control"
-              name="password"
+              formControlName="password"
               id="password"
               aria-describedby="passwordHelp"
               placeholder="Enter Password"
@@ -179,7 +179,7 @@
             <input
               [type]="showConfirmPassword ? 'text' : 'password'"
               class="form-control"
-              name="confirmPassword"
+              formControlName="confirmPassword"
               id="confirmPassword"
               aria-describedby="confirmPasswordHelp"
               placeholder="Confirm password"
@@ -209,7 +209,7 @@
             type="checkbox"
             value=""
             id="adminAccess"
-            name="isAdmin"
+            formControlName="isAdmin"
           />
           <label class="form-check-label" for="adminAccess"
             >Provide admin access to this user</label
@@ -225,7 +225,7 @@
     <div class="bg-dark text-info p-5">
       <pre>
 <code>
-{{"savedFormData" | json}}
+{{ savedFormData | json}}
 </code>
       </pre>
     </div>
