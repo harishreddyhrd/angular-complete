@@ -126,6 +126,36 @@
             >mobileHelp</small
           >
         </div>
+
+        <!-- Hobbies -->
+        <div class="mb-3">
+          <button
+            type="button"
+            class="btn btn-dark"
+            (click)="triggerAddHobbbyInput()"
+          >
+            <i class="fa fa-plus"></i>&nbsp;Hobbies
+          </button>
+          <div class="mt-3" formArrayName="hobbies">
+            <div
+              class="input-group mb-2"
+              *ngFor="let hobby of hobbies; let i = index"
+            >
+              <span class="input-group-addon input-group-text" id="prefixId"
+                >Hobby-{{ i + 1 }}</span
+              >
+              <input
+                type="text"
+                id="{{ 'hobby-' + i }}"
+                class="form-control"
+                [value]="i"
+                [formControlName]="i"
+                placeholder=""
+                aria-describedby="prefixId"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Login info  -->
