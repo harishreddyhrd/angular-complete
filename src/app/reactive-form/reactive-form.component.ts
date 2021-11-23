@@ -56,6 +56,7 @@ export class ReactiveFormComponent implements OnInit {
     // console.log(this.userDataReactiveForm.get('loginInformation')?.get('email'));
   }
 
+  // CUSTOM_VALIDATION_FUNCTION()
   // isEmailRestricted() : { [randomString: string]: boolean } | null {}
 
   isEmailRestricted(emailPlaceHolder: FormControl) {
