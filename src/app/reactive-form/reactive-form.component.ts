@@ -53,9 +53,7 @@ export class ReactiveFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // console.log(
-    //   this.userDataReactiveForm.get('loginInformation')?.get('email')
-    // );
+    // console.log(this.userDataReactiveForm.get('loginInformation')?.get('email'));
   }
 
   // isEmailRestricted() : { [randomString: string]: boolean } | null {}
