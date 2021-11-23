@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   FormGroupName,
@@ -26,6 +27,7 @@ export class ReactiveFormComponent implements OnInit {
     mobile: new FormControl('9493000703'),
     dateOfBirth: new FormControl('2002-05-31'),
     salary: new FormControl(4.25),
+    hobbies: new FormArray([]),
     loginInformation: new FormGroup({
       email: new FormControl('harish.reddy@gmail.com', [
         Validators.required,
@@ -45,8 +47,23 @@ export class ReactiveFormComponent implements OnInit {
     // );
   }
 
+  get hobbies() {
+    return (<FormArray>this.userDataReactiveForm.get('hobbies')).controls;
+  }
+
+  triggerAddHobbbyInput() {
+    const hobbiesFormArray: FormArray = <FormArray>(
+      this.userDataReactiveForm.get('hobbies')
+    );
+    const newFormControlInput = new FormControl(
+      `Hobby-${hobbiesFormArray.length + 1}`,
+      [Validators.required]
+    );
+    hobbiesFormArray.push(newFormControlInput);
+  }
+
   onSubmit() {
-    // console.log(this.userDataReactiveForm);
+    console.log(this.userDataReactiveForm);
     console.log(this.userDataReactiveForm.value);
     this.savedFormData = this.userDataReactiveForm.value;
   }
