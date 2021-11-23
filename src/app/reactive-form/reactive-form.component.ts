@@ -19,6 +19,11 @@ export class ReactiveFormComponent implements OnInit {
     'Reading books',
     'Watching movies',
   ];
+  restrictedEmailsList: string[] = [
+    'admin@wipro.com',
+    'administrator@wipro.com',
+    'imgadmin@wipro.com',
+  ];
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -37,6 +42,7 @@ export class ReactiveFormComponent implements OnInit {
       email: new FormControl('harish.reddy@gmail.com', [
         Validators.required,
         Validators.email,
+        this.isEmailRestricted,
       ]),
       password: new FormControl('Wipro@123', [Validators.required]),
       confirmPassword: new FormControl('Wipro@123'),
@@ -50,6 +56,16 @@ export class ReactiveFormComponent implements OnInit {
     // console.log(
     //   this.userDataReactiveForm.get('loginInformation')?.get('email')
     // );
+  }
+
+  // isEmailRestricted() : { [randomString: string]: boolean } | null {}
+
+  isEmailRestricted(emailPlaceHolder: FormControl) {
+    if (this.restrictedEmailsList.includes(emailPlaceHolder.value)) {
+      return { emailRestricted: true };
+    } else {
+      return null;
+    }
   }
 
   get hobbies() {
@@ -78,14 +94,15 @@ export class ReactiveFormComponent implements OnInit {
     const emailPlaceHolder = this.userDataReactiveForm?.get(
       'loginInformation.email'
     );
-    // const emailPlaceHolder = this.userDataReactiveForm
-    //   ?.get('loginInformation')
-    //   ?.get('email');
+    // const emailPlaceHolder = this.userDataReactiveForm?.get('loginInformation')?.get('email');
+
     if (emailPlaceHolder?.touched && emailPlaceHolder?.invalid) {
       if (emailPlaceHolder.errors?.required) {
         return 'Email is required';
       } else if (emailPlaceHolder.errors?.email) {
         return 'Invalid email';
+      } else if (emailPlaceHolder.errors?.emailRestricted) {
+        return 'Restricted email';
       } else {
         return;
       }
