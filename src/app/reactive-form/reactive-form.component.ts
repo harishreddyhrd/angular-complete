@@ -42,7 +42,7 @@ export class ReactiveFormComponent implements OnInit {
       email: new FormControl('harish.reddy@gmail.com', [
         Validators.required,
         Validators.email,
-        this.isEmailRestricted,
+        this.isEmailRestricted.bind(this),
       ]),
       password: new FormControl('Wipro@123', [Validators.required]),
       confirmPassword: new FormControl('Wipro@123'),
