@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
+  AsyncValidatorFn,
   FormArray,
   FormControl,
   FormGroup,
   FormGroupName,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'reactive-form',
@@ -24,6 +27,12 @@ export class ReactiveFormComponent implements OnInit {
     'administrator@wipro.com',
     'imgadmin@wipro.com',
   ];
+  existingUserEmailsList: string[] = [
+    'harish@gmail.com',
+    'rishi@gmail.com',
+    'balu@gmail.com',
+    'imvk@gmail.com',
+  ];
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -39,11 +48,15 @@ export class ReactiveFormComponent implements OnInit {
     salary: new FormControl(4.25),
     hobbies: new FormArray([]),
     loginInformation: new FormGroup({
-      email: new FormControl('harish.reddy@gmail.com', [
-        Validators.required,
-        Validators.email,
-        this.isEmailRestricted.bind(this),
-      ]),
+      email: new FormControl(
+        'harish.reddy@gmail.com',
+        [
+          Validators.required,
+          Validators.email,
+          this.isEmailRestricted.bind(this),
+        ],
+        this.doesEmailAlreadyExist.bind(this)
+      ),
       password: new FormControl('Wipro@123', [Validators.required]),
       confirmPassword: new FormControl('Wipro@123'),
     }),
@@ -58,13 +71,29 @@ export class ReactiveFormComponent implements OnInit {
 
   // CUSTOM_VALIDATION_FUNCTION()
   // isEmailRestricted() : { [randomString: string]: boolean } | null {}
-
   isEmailRestricted(emailPlaceHolder: FormControl) {
+    //here 'this' is used - hence you have to bind(this) when validationg
     if (this.restrictedEmailsList.includes(emailPlaceHolder.value)) {
       return { emailRestricted: true };
     } else {
       return null;
     }
+  }
+
+  // CUSTOM_ASYNC_VALIDATION_FUNCTION()
+  // doesEmailAlreadyExist(): Promise<any> | Observable<any> {}
+  doesEmailAlreadyExist(emailPlaceHolder: AbstractControl): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        //here 'this' is used - hence you have to bind(this) when validationg
+        if (this.existingUserEmailsList.includes(emailPlaceHolder.value)) {
+          resolve({ emailAlreadyExists: true });
+        } else {
+          resolve(null);
+        }
+      }, 2000);
+    });
+    return promise;
   }
 
   get hobbies() {
@@ -102,6 +131,8 @@ export class ReactiveFormComponent implements OnInit {
         return 'Invalid email';
       } else if (emailPlaceHolder.errors?.emailRestricted) {
         return 'Restricted email';
+      } else if (emailPlaceHolder.errors?.emailAlreadyExists) {
+        return 'Email already registered';
       } else {
         return;
       }
