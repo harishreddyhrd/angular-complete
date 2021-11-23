@@ -14,6 +14,11 @@ import {
 })
 export class ReactiveFormComponent implements OnInit {
   gendersList: string[] = ['male', 'female', 'not specified'];
+  myHobbiesList: string[] = [
+    'Listening music',
+    'Reading books',
+    'Watching movies',
+  ];
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -56,7 +61,7 @@ export class ReactiveFormComponent implements OnInit {
       this.userDataReactiveForm.get('hobbies')
     );
     const newFormControlInput = new FormControl(
-      `Hobby-${hobbiesFormArray.length + 1}`,
+      this.myHobbiesList[hobbiesFormArray.length],
       [Validators.required]
     );
     hobbiesFormArray.push(newFormControlInput);

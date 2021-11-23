@@ -133,6 +133,7 @@
             type="button"
             class="btn btn-dark"
             (click)="triggerAddHobbbyInput()"
+            [disabled]="hobbies.length == myHobbiesList.length"
           >
             <i class="fa fa-plus"></i>&nbsp;Hobbies
           </button>
