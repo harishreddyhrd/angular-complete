@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'inititate';
-  description = 'description';
+  title = 'Custom Pipe';
+  description = 'Demonstartion of how a custom pipe works';
 }
