@@ -67,6 +67,50 @@ export class ReactiveFormComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.userDataReactiveForm.get('loginInformation')?.get('email'));
+
+    this.userDataReactiveForm
+      .get('firstName')
+      ?.valueChanges.subscribe((changes) => {
+        console.log(changes);
+      });
+
+    this.userDataReactiveForm
+      .get('loginInformation.email')
+      ?.statusChanges.subscribe((changes) => {
+        console.log(changes);
+      });
+  }
+
+  setTheFormWithDefaultValues() {
+    this.userDataReactiveForm.setValue({
+      firstName: 'Sonia',
+      lastName: 'Gandhi',
+      gender: 'female',
+      mobile: '9123912391',
+      dateOfBirth: '2002-05-31',
+      salary: 2.25,
+      hobbies: [],
+      loginInformation: {
+        email: 'sonia.gandhi@gmail.com',
+        password: 'alfa@123',
+        confirmPassword: 'alfa@123',
+      },
+      isAdmin: true,
+    });
+  }
+
+  patchTheFormWithDefaultValues() {
+    this.userDataReactiveForm.patchValue({
+      firstName: 'Sonia',
+      lastName: 'Reddy',
+      gender: 'female',
+      salary: 12.25,
+      loginInformation: {
+        email: 'sonia.reddy@gmail.com',
+        password: 'Wipro&Alfa',
+        confirmPassword: 'Wipro&Alfa',
+      },
+    });
   }
 
   // CUSTOM_VALIDATION_FUNCTION()
@@ -115,6 +159,7 @@ export class ReactiveFormComponent implements OnInit {
     console.log(this.userDataReactiveForm);
     console.log(this.userDataReactiveForm.value);
     this.savedFormData = this.userDataReactiveForm.value;
+    this.userDataReactiveForm.reset();
   }
 
   //ERRORS

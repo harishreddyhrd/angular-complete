@@ -3,12 +3,20 @@
     <div class="mb-5">
       <div class="row align-items-center">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
-          <button type="button" class="w-100 btn btn-success float-md-end">
+          <button
+            type="button"
+            class="w-100 btn btn-success float-md-end"
+            (click)="setTheFormWithDefaultValues()"
+          >
             Set default values
           </button>
         </div>
         <div class="col-12 col-md-6">
-          <button type="button" class="w-100 btn btn-warning">
+          <button
+            type="button"
+            class="w-100 btn btn-warning"
+            (click)="patchTheFormWithDefaultValues()"
+          >
             Patch default values
           </button>
         </div>
@@ -122,9 +130,9 @@
             (input)="mobileHelp.innerHTML = salary.value"
             #salary
           />
-          <small #mobileHelp id="mobileHelp" class="form-text text-danger"
-            >mobileHelp</small
-          >
+          <small #mobileHelp id="mobileHelp" class="form-text text-danger">{{
+            userDataReactiveForm.controls?.salary?.value
+          }}</small>
         </div>
 
         <!-- Hobbies -->
