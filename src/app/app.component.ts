@@ -10,4 +10,7 @@ export class AppComponent {
   title = 'Filter pipe';
   description = 'Filter pipe demo';
   users = data;
+  searchKeyword: string = 'South';
+
+  ngOnInit() {}
 }

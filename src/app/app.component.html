@@ -7,7 +7,24 @@
   </div>
   <div class="row">
     <div class="px-5">
-      <div class="card bg-dark text-light mb-3" *ngFor="let user of users">
+      <div class="input-group mt-3 mb-5">
+        <input
+          type="text"
+          name="searchKeyword"
+          id="searchInput"
+          class="form-control"
+          placeholder="Enter a keyword to search..."
+          aria-describedby="sufixId"
+          [(ngModel)]="searchKeyword"
+        />
+        <span class="input-group-text" id="sufixId">
+          <i class="fa fa-search"></i>
+        </span>
+      </div>
+      <div
+        class="card bg-dark text-light mb-3"
+        *ngFor="let user of users | search: searchKeyword"
+      >
         <!-- <div class="card-header h5">{{ user.username }}</div> -->
         <div class="card-body p-5">
           <h5 class="card-title display-4">{{ user.name }}</h5>
