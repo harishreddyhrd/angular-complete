@@ -15,7 +15,7 @@
           class="form-control"
           placeholder="Enter a keyword to search..."
           aria-describedby="sufixId"
-          [(ngModel)]="searchKeyword"
+          [(ngModel)]="keyword"
         />
         <span class="input-group-text" id="sufixId">
           <i class="fa fa-search"></i>
@@ -23,7 +23,7 @@
       </div>
       <div
         class="card bg-dark text-light mb-3"
-        *ngFor="let user of users | search: searchKeyword"
+        *ngFor="let user of users | search: keyword"
       >
         <!-- <div class="card-header h5">{{ user.username }}</div> -->
         <div class="card-body p-5">
@@ -31,6 +31,13 @@
           <p class="card-text h3">
             <code class="text-info">{{ user.address.city }}</code>
           </p>
+          <hr />
+          <code class="text-warning h6">
+            <pre
+              >{{ user | json }}
+</pre
+            >
+          </code>
         </div>
         <!-- <div class="card-footer text-info">{{ user.email }}</div> -->
       </div>
