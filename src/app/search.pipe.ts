@@ -4,6 +4,7 @@ import { loopOver } from './loopOver';
 
 @Pipe({
   name: 'search',
+  pure: false, // toggle comment this out and click the +Default User button
 })
 export class SearchPipe implements PipeTransform {
   transform(users: any, keyword: string) {

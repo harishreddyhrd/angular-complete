@@ -7,6 +7,9 @@
   </div>
   <div class="row">
     <div class="px-5">
+      <button type="button" class="btn btn-primary" (click)="addDefaultUser()">
+        <i class="fa fa-plus"></i>&nbsp; Default User
+      </button>
       <div class="input-group mt-3 mb-5">
         <input
           type="text"
@@ -31,15 +34,16 @@
           <p class="card-text h3">
             <code class="text-info">{{ user.address.city }}</code>
           </p>
-          <hr />
+          <!-- <hr />
           <code class="text-warning h6">
             <pre
               >{{ user | json }}
 </pre
             >
           </code>
+        </div> -->
+          <!-- <div class="card-footer text-info">{{ user.email }}</div> -->
         </div>
-        <!-- <div class="card-footer text-info">{{ user.email }}</div> -->
       </div>
     </div>
   </div>
