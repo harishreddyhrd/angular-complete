@@ -14,6 +14,11 @@ export class AppComponent {
   description = 'Filter pipe demo';
   users = data.splice(0, 2);
   keyword: string = '';
+  asyncData = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Asynchronous Data received after 3s');
+    }, 3000);
+  });
 
   ngOnInit() {
     /*     this.users.forEach((objct: any) => {

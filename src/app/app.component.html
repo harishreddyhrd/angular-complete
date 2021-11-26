@@ -7,9 +7,14 @@
   </div>
   <div class="row">
     <div class="px-5">
-      <button type="button" class="btn btn-primary" (click)="addDefaultUser()">
+      <button
+        type="button"
+        class="btn btn-primary mb-3"
+        (click)="addDefaultUser()"
+      >
         <i class="fa fa-plus"></i>&nbsp; Default User
       </button>
+      <h3 class="mb-3 text-danger">{{ asyncData | async }}</h3>
       <div class="input-group mt-3 mb-5">
         <input
           type="text"
