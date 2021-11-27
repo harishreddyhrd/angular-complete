@@ -37,24 +37,8 @@ export class AddMovieComponent implements OnInit {
   }
 
   submitToFireBase(data: any) {
-    /* const HTTP_OPTIONS = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': [
-          'GET',
-          'PUST',
-          'POST',
-          'PATCH',
-          'OPTIONS',
-        ],
-        'Access-Control-Allow-Headers':
-          'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-      }),
-    }; */
-    // let URL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/`;
-    let URL = `https://jsonplaceholder.typicode.com/posts`;
+    let URL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json`;
+    // let URL = `http://localhost:3000/movies`;
     return this._http.post(URL, data);
   }
 
@@ -89,3 +73,20 @@ export class AddMovieComponent implements OnInit {
     }
   }
 }
+
+/* const HTTP_OPTIONS = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': [
+          'GET',
+          'PUST',
+          'POST',
+          'PATCH',
+          'OPTIONS',
+        ],
+        'Access-Control-Allow-Headers':
+          'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+      }),
+    }; */

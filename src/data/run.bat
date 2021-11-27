@@ -1,0 +1,1 @@
+json-server --watch movies.json --port 3000
