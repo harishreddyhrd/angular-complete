@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -22,14 +23,38 @@ export class AddMovieComponent implements OnInit {
 
   submission!: any;
 
-  constructor() {}
+  constructor(private _http: HttpClient) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
     this.submission = this.addMovieForm.value;
     console.log(this.submission);
-    this.addMovieForm.reset();
+    this.submitToFireBase(this.addMovieForm.value).subscribe((response) => {
+      console.log(response);
+    });
+    // this.addMovieForm.reset();
+  }
+
+  submitToFireBase(data: any) {
+    /* const HTTP_OPTIONS = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': [
+          'GET',
+          'PUST',
+          'POST',
+          'PATCH',
+          'OPTIONS',
+        ],
+        'Access-Control-Allow-Headers':
+          'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+      }),
+    }; */
+    let firebaseURL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/`;
+    return this._http.post(firebaseURL, data);
   }
 
   //Errors
