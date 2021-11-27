@@ -53,8 +53,9 @@ export class AddMovieComponent implements OnInit {
           'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
       }),
     }; */
-    let firebaseURL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/`;
-    return this._http.post(firebaseURL, data);
+    // let URL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/`;
+    let URL = `https://jsonplaceholder.typicode.com/posts`;
+    return this._http.post(URL, data);
   }
 
   //Errors
