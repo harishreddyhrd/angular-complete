@@ -1,0 +1,27 @@
+<form>
+  <div class="mb-3">
+    <label for="movieName">Movie</label>
+    <input
+      type="text"
+      class="form-control"
+      name="movieName"
+      id="movieName"
+      aria-describedby="movieNameHelp"
+      placeholder="Enter a movie name..."
+    />
+    <small id="movieNameHelp" class="form-text text-danger"></small>
+  </div>
+  <div class="mb-3">
+    <label for="movieRating">Rating</label>
+    <input
+      type="number"
+      class="form-control"
+      name="movieRating"
+      id="movieRating"
+      aria-describedby="movieRatingHelp"
+      placeholder=""
+      [step]="0.25"
+    />
+    <small id="movieRatingHelp" class="form-text text-danger"></small>
+  </div>
+</form>
