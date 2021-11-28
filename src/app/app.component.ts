@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'inititate';
-  description = 'description';
+  title = 'HTTP';
+  description = 'CRUD operations using HTTP';
 }

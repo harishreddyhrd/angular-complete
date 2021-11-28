@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Movie } from '../model/movie.model';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -28,7 +29,7 @@ export class AddMovieComponent implements OnInit, OnChanges {
 
   allMovies: Movie[] = [];
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _movieService: MovieService) {}
 
   ngOnInit(): void {
     this.getAllMovies();
@@ -40,43 +41,25 @@ export class AddMovieComponent implements OnInit, OnChanges {
 
   onSubmit() {
     this.submission = this.addMovieForm.value;
-    console.log(this.submission);
-    this.submitDataToFireBase(this.addMovieForm.value).subscribe(
-      (response: { name: string }) => {
-        console.log(response);
+    this._movieService
+      .submitDataToFireBase(this.addMovieForm.value)
+      .subscribe((response: { name: string }) => {
         this.getAllMovies(); //Adds row to table onSubmit()
-      }
-    );
+      });
     this.addMovieForm.reset();
   }
 
   getAllMovies() {
-    return this.getDataFromFireBase().subscribe((response: Movie[]) => {
-      // console.log(response, typeof response);
-      for (const id in response) {
-        // console.log(id);
-        // console.log(response[id]);
-        this.allMovies.push({ id, ...response[id] });
-      }
-      console.log(this.allMovies);
-    });
+    return this._movieService
+      .getDataFromFireBase()
+      .subscribe((response: Movie[]) => {
+        for (const id in response) {
+          this.allMovies.push({ id, ...response[id] });
+        }
+      });
   }
 
-  //SERVICE FUNCTIONS
-  //===========================
-  URL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json`;
-
-  getDataFromFireBase(): Observable<any> {
-    return this._http.get(this.URL);
-  }
-
-  submitDataToFireBase(data: Movie): Observable<any> {
-    // let URL = `http://localhost:3000/movies`;
-    return this._http.post(this.URL, data);
-  }
-  //=============================
-
-  //Errors
+  // ============= Errors ===============
   showMovieNameErrors() {
     const movieNamePlaceHolder = this.addMovieForm.get('movieName');
     if (movieNamePlaceHolder?.touched && movieNamePlaceHolder.invalid) {
