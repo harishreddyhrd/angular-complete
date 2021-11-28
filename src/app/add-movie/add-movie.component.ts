@@ -43,7 +43,7 @@ export class AddMovieComponent implements OnInit, OnChanges {
       console.log(response);
       this.getAllMovies(); //Adds row to table onSubmit()
     });
-    // this.addMovieForm.reset();
+    this.addMovieForm.reset();
   }
 
   getAllMovies() {
