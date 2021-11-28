@@ -18,4 +18,8 @@ export class MovieService {
   submitDataToFireBase(data: Movie): Observable<any> {
     return this._http.post(this.URL, data);
   }
+
+  deleteAllDataFromFireBase() {
+    return this._http.delete(this.URL);
+  }
 }

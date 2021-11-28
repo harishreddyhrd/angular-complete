@@ -59,6 +59,11 @@ export class AddMovieComponent implements OnInit, OnChanges {
       });
   }
 
+  deleteAllMovies() {
+    this._movieService.deleteAllDataFromFireBase().subscribe();
+    this.allMovies = [];
+  }
+
   // ============= Errors ===============
   showMovieNameErrors() {
     const movieNamePlaceHolder = this.addMovieForm.get('movieName');
