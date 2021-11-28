@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.scss'],
 })
-export class AddMovieComponent implements OnInit {
+export class AddMovieComponent implements OnInit, OnChanges {
   addMovieForm: FormGroup = new FormGroup({
     movieName: new FormControl('Khadgam', [
       Validators.required,
@@ -23,24 +24,53 @@ export class AddMovieComponent implements OnInit {
 
   submission!: any;
 
+  allMovies: any = [];
+
   constructor(private _http: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllMovies();
+  }
+
+  ngOnChanges() {
+    this.getAllMovies();
+  }
 
   onSubmit() {
     this.submission = this.addMovieForm.value;
     console.log(this.submission);
-    this.submitToFireBase(this.addMovieForm.value).subscribe((response) => {
+    this.submitDataToFireBase(this.addMovieForm.value).subscribe((response) => {
       console.log(response);
+      this.getAllMovies(); //Adds row to table onSubmit()
     });
     // this.addMovieForm.reset();
   }
 
-  submitToFireBase(data: any) {
-    let URL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json`;
-    // let URL = `http://localhost:3000/movies`;
-    return this._http.post(URL, data);
+  getAllMovies() {
+    return this.getDataFromFireBase().subscribe((response: any) => {
+      // console.log(response, typeof response);
+      for (const id in response) {
+        // console.log(id);
+        // console.log(response[id]);
+        this.allMovies.push({ id, ...response[id] });
+      }
+      console.log(this.allMovies);
+    });
   }
+
+  //SERVICE FUNCTIONS
+  //===========================
+  URL = `https://angular-complete-d061e-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json`;
+
+  getDataFromFireBase() {
+    return this._http.get(this.URL);
+  }
+
+  submitDataToFireBase(data: any) {
+    // let URL = `http://localhost:3000/movies`;
+    return this._http.post(this.URL, data);
+  }
+  //=============================
 
   //Errors
   showMovieNameErrors() {
