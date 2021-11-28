@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../model/movie.model';
@@ -12,11 +12,15 @@ export class MovieService {
   constructor(private _http: HttpClient) {}
 
   getDataFromFireBase(): Observable<any> {
-    return this._http.get(this.URL);
+    return this._http.get(this.URL, {
+      headers: new HttpHeaders({ 'function-used': 'GET-DATA' }),
+    });
   }
 
   submitDataToFireBase(data: Movie): Observable<any> {
-    return this._http.post(this.URL, data);
+    return this._http.post(this.URL, data, {
+      headers: new HttpHeaders({ 'function-used': 'POST-DATA' }),
+    });
   }
 
   deleteAllDataFromFireBase() {
