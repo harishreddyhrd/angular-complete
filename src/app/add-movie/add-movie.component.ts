@@ -66,6 +66,12 @@ export class AddMovieComponent implements OnInit, OnChanges {
       .pipe(
         tap((resp) => {
           console.log('tap delete:: ', resp);
+          if (resp.type === 0) {
+            console.log('tap delete:: REQUEST SENT');
+          }
+          if (resp.type === 4) {
+            console.log('tap delete:: RESPONSE RECEIVED');
+          }
         })
       )
       .subscribe((response) => {
