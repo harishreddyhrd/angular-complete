@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../model/movie.model';
@@ -14,6 +14,7 @@ export class MovieService {
   getDataFromFireBase(): Observable<any> {
     return this._http.get(this.URL, {
       headers: new HttpHeaders({ 'function-used': 'GET-DATA' }),
+      params: new HttpParams().set('keyword', 'Baahubali'),
     });
   }
 
