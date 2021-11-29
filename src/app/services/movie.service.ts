@@ -25,6 +25,7 @@ export class MovieService {
   submitDataToFireBase(data: Movie): Observable<any> {
     return this._http.post(this.URL, data, {
       headers: new HttpHeaders({ 'function-used': 'POST-DATA' }),
+      observe: 'body',
     });
   }
 

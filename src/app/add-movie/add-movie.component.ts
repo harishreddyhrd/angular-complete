@@ -44,6 +44,7 @@ export class AddMovieComponent implements OnInit, OnChanges {
     this._movieService
       .submitDataToFireBase(this.addMovieForm.value)
       .subscribe((response: { name: string }) => {
+        console.log(response);
         this.getAllMovies(); //Adds row to table onSubmit()
       });
     this.addMovieForm.reset();
