@@ -30,6 +30,8 @@ export class MovieService {
   }
 
   deleteAllDataFromFireBase() {
-    return this._http.delete(this.URL);
+    return this._http.delete(this.URL, {
+      observe: 'events',
+    });
   }
 }

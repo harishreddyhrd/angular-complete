@@ -61,7 +61,9 @@ export class AddMovieComponent implements OnInit, OnChanges {
   }
 
   deleteAllMovies() {
-    this._movieService.deleteAllDataFromFireBase().subscribe();
+    this._movieService.deleteAllDataFromFireBase().subscribe((response) => {
+      console.log('delete :: ', response);
+    });
     this.allMovies = [];
   }
 
