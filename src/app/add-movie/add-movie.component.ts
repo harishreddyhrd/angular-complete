@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Movie } from '../model/movie.model';
 import { MovieService } from '../services/movie.service';
 
@@ -61,9 +61,16 @@ export class AddMovieComponent implements OnInit, OnChanges {
   }
 
   deleteAllMovies() {
-    this._movieService.deleteAllDataFromFireBase().subscribe((response) => {
-      console.log('delete :: ', response);
-    });
+    this._movieService
+      .deleteAllDataFromFireBase()
+      .pipe(
+        tap((resp) => {
+          console.log('tap delete:: ', resp);
+        })
+      )
+      .subscribe((response) => {
+        console.log('delete :: ', response);
+      });
     this.allMovies = [];
   }
 
