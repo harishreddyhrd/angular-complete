@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -66,10 +66,10 @@ export class AddMovieComponent implements OnInit, OnChanges {
       .pipe(
         tap((resp) => {
           console.log('tap delete:: ', resp);
-          if (resp.type === 0) {
+          if (resp.type === HttpEventType.Sent) {
             console.log('tap delete:: REQUEST SENT');
           }
-          if (resp.type === 4) {
+          if (resp.type === HttpEventType.Response) {
             console.log('tap delete:: RESPONSE RECEIVED');
           }
         })
