@@ -4,8 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpEventType,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -33,6 +35,13 @@ export class AuthInterceptor implements HttpInterceptor {
       params: searchParams,
     });
 
-    return next.handle(modifiedRequest);
+    return next.handle(modifiedRequest).pipe(
+      tap((event) => {
+        console.log('AuthInterceptor:: intercepts each HTTP response', event);
+        if (event.type === HttpEventType.Response) {
+          console.log('RESPONSE BODY', event.body);
+        }
+      })
+    );
   }
 }
