@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginInterceptor } from './interceptors/login.interceptor';
 
 @NgModule({
   declarations: [AppComponent, AddMovieComponent],
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
