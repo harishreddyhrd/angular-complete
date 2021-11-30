@@ -17,6 +17,7 @@ export class LoginInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    console.log('REQUEST HEADERS', request.headers);
     return next.handle(request).pipe(
       tap((event) => {
         console.log('LoginInterceptor:: intercepts each HTTP response', event);
