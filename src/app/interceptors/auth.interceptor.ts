@@ -15,7 +15,24 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log('AuthInterceptor:: intercepts each HTTP request');
-    return next.handle(request);
+    console.log('AuthInterceptor:: intercepts each HTTP request', request);
+    // request.headers = {'randomKey': 'randomValue'}; Can't assign value as 'request' is a read-only object
+
+    let searchParams = request.params;
+    searchParams = request.params.append(
+      'randomFirstParamKey',
+      'randomFirstParamValue'
+    );
+    searchParams = request.params.append(
+      'randomSecondParamKey',
+      'randomSecondParamValue'
+    );
+
+    let modifiedRequest = request.clone({
+      headers: request.headers.append('randomKey', 'randomValue'),
+      params: searchParams,
+    });
+
+    return next.handle(modifiedRequest);
   }
 }

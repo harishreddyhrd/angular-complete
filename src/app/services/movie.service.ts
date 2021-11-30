@@ -13,8 +13,8 @@ export class MovieService {
 
   getDataFromFireBase(): Observable<any> {
     let searchParameters = new HttpParams().set('keyword', 'Telugu');
-    searchParameters = searchParameters.append('actor', 'Allu Arjun');
-    searchParameters = searchParameters.append('actress', 'Kajal Aggarwal');
+    // searchParameters = searchParameters.append('actor', 'Allu Arjun');
+    // searchParameters = searchParameters.append('actress', 'Kajal Aggarwal');
 
     return this._http.get(this.URL, {
       headers: new HttpHeaders({ 'function-used': 'GET-DATA' }),
