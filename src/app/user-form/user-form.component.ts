@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class UserFormComponent implements OnInit {
   isNewUser: boolean = false;
+  isLoading: boolean = false;
 
   userForm: FormGroup = new FormGroup({
     email: new FormControl('harish@wipro.com', [
@@ -21,10 +22,18 @@ export class UserFormComponent implements OnInit {
       Validators.minLength(8),
     ]),
   });
+  errorMessage!: any;
 
   constructor(private _authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    this.isLoading = true;
+    setTimeout(() => {
+      return this.isNewUser ? this.onRegister() : this.onLogin();
+    }, 2000);
+  }
 
   onRegister() {
     const { email, password } = this.userForm.value;
@@ -33,14 +42,18 @@ export class UserFormComponent implements OnInit {
       (resp: RegisterResponse) => {
         console.log(resp);
       },
-      (error) => {
-        console.log(error);
+      (errorReceived) => {
+        this.errorMessage = (errorReceived.status == 400) ?  'EMAIL_EXISTS': '';
+        console.log(errorReceived);
       }
     );
+    this.isLoading = false;
+    console.log(this.isLoading);
   }
 
   onLogin() {
     console.log('Login', this.userForm.value);
+    this.isLoading = false;
   }
 
   //ERRORS

@@ -6,9 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, UserFormComponent],
+  declarations: [AppComponent, UserFormComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
