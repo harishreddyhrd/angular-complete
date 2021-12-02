@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RegisterResponse } from '../models/register-response';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user-form',
@@ -20,12 +22,21 @@ export class UserFormComponent implements OnInit {
     ]),
   });
 
-  constructor() {}
+  constructor(private _authService: AuthService) {}
 
   ngOnInit(): void {}
 
   onRegister() {
-    console.log('Register', this.userForm.value);
+    const { email, password } = this.userForm.value;
+    console.log('Register', email, password);
+    this._authService.register(email, password).subscribe(
+      (resp: RegisterResponse) => {
+        console.log(resp);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   onLogin() {

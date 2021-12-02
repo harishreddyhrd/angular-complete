@@ -1,42 +1,19 @@
 <form [formGroup]="userForm" (ngSubmit)="isNewUser ? onRegister() : onLogin()">
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      formControlName="email"
-      aria-describedby="emailHelp"
-    />
-    <small
-      id="emailHelp"
-      class="help-text text-danger"
-      *ngIf="showErrorsForEmail()"
-    >
+    <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" />
+    <small id="emailHelp" class="help-text text-danger" *ngIf="showErrorsForEmail()">
       {{ showErrorsForEmail() }}
     </small>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      formControlName="password"
-    />
-    <small
-      id="passwordHelp"
-      class="help-text text-danger"
-      *ngIf="showErrorsForPassword()"
-    >
+    <input type="password" class="form-control" id="password" formControlName="password" />
+    <small id="passwordHelp" class="help-text text-danger" *ngIf="showErrorsForPassword()">
       {{ showErrorsForPassword() }}
     </small>
   </div>
-  <button
-    type="submit"
-    class="btn mb-3"
-    [ngClass]="isNewUser ? 'btn-success' : 'btn-primary'"
-  >
+  <button type="submit" class="btn mb-3" [ngClass]="isNewUser ? 'btn-success' : 'btn-primary'">
     {{ isNewUser ? "Register" : "Login" }}
   </button>
   <a href="#" class="d-block link-primary" (click)="isNewUser = !isNewUser">
