@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginResponse } from '../models/login-response';
 import { RegisterResponse } from '../models/register-response';
 import { AuthService } from '../services/auth.service';
 
@@ -52,7 +53,17 @@ export class UserFormComponent implements OnInit {
   }
 
   onLogin() {
+    const { email, password } = this.userForm.value;
     console.log('Login', this.userForm.value);
+    this._authService.login(email, password).subscribe(
+      (responseReceived: LoginResponse) => {
+        console.log(responseReceived);
+      },
+      (errorMsgReceived) => {
+        console.log(errorMsgReceived);
+        this.errorMessage = errorMsgReceived;
+      }
+    );
     this.isLoading = false;
   }
 
