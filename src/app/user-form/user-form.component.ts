@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { LoginResponse } from '../models/login-response';
 import { RegisterResponse } from '../models/register-response';
 import { UserCredentials } from '../models/user-credentials';
