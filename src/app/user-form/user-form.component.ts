@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { LoginResponse } from '../models/login-response';
 import { RegisterResponse } from '../models/register-response';
+import { UserCredentials } from '../models/user-credentials';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -30,41 +33,41 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    this.errorMessage = null;
     this.isLoading = true;
+
+    let userCredentials: UserCredentials = this.userForm.value;
+    let action: Observable<RegisterResponse | LoginResponse>;
+
+    action = this.isNewUser
+      ? this.onRegister(userCredentials)
+      : this.onLogin(userCredentials);
+
     setTimeout(() => {
-      return this.isNewUser ? this.onRegister() : this.onLogin();
+      action.subscribe(
+        (responseReceived: RegisterResponse | LoginResponse) => {
+          console.log(responseReceived);
+          this.isLoading = false;
+        },
+        (errorMsgReceived) => {
+          console.log(errorMsgReceived);
+          this.errorMessage = errorMsgReceived;
+          this.isLoading = false;
+        }
+      );
     }, 2000);
   }
 
-  onRegister() {
-    const { email, password } = this.userForm.value;
+  onRegister(userCredentials: UserCredentials) {
+    const { email, password } = userCredentials;
     console.log('Register', email, password);
-    this._authService.register(email, password).subscribe(
-      (responseReceived: RegisterResponse) => {
-        console.log(responseReceived);
-      },
-      (errorMsgReceived) => {
-        console.log(errorMsgReceived);
-        this.errorMessage = errorMsgReceived;
-      }
-    );
-    this.isLoading = false;
-    console.log(this.isLoading);
+    return this._authService.register(email, password);
   }
 
-  onLogin() {
-    const { email, password } = this.userForm.value;
+  onLogin(userCredentials: UserCredentials) {
+    const { email, password } = userCredentials;
     console.log('Login', this.userForm.value);
-    this._authService.login(email, password).subscribe(
-      (responseReceived: LoginResponse) => {
-        console.log(responseReceived);
-      },
-      (errorMsgReceived) => {
-        console.log(errorMsgReceived);
-        this.errorMessage = errorMsgReceived;
-      }
-    );
-    this.isLoading = false;
+    return this._authService.login(email, password);
   }
 
   //ERRORS
