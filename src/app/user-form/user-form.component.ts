@@ -43,8 +43,9 @@ export class UserFormComponent implements OnInit {
         console.log(resp);
       },
       (errorReceived) => {
-        this.errorMessage = (errorReceived.status == 400) ?  'EMAIL_EXISTS': '';
-        console.log(errorReceived);
+        // this.errorMessage = (errorReceived.status == 400) ?  'EMAIL_EXISTS': '';
+        console.log(errorReceived.error.error.message);
+        this.errorMessage = errorReceived.error.error.message;
       }
     );
     this.isLoading = false;
