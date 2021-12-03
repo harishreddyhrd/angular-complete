@@ -39,12 +39,12 @@ export class UserFormComponent implements OnInit {
     const { email, password } = this.userForm.value;
     console.log('Register', email, password);
     this._authService.register(email, password).subscribe(
-      (resp: RegisterResponse) => {
-        console.log(resp);
+      (responseReceived: RegisterResponse) => {
+        console.log(responseReceived);
       },
-      (errorReceived) => {
-        console.log(errorReceived);
-        this.errorMessage = errorReceived.error.error.message;
+      (errorMsgReceived) => {
+        console.log(errorMsgReceived);
+        this.errorMessage = errorMsgReceived;
       }
     );
     this.isLoading = false;
