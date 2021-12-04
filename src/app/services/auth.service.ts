@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OperatorFunction, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, OperatorFunction, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { LoginResponse } from '../models/login-response';
 import { RegisterResponse } from '../models/register-response';
 
@@ -10,6 +10,8 @@ import { RegisterResponse } from '../models/register-response';
 })
 export class AuthService {
   API_KEY: string = 'AIzaSyD9mCFI9Gsyo0NMdQplDYBHC6tXoi5l4uM';
+
+  user$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private _http: HttpClient) {}
 
@@ -28,7 +30,21 @@ export class AuthService {
         `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.API_KEY}`,
         { email, password, returnSecureToken: true }
       )
-      .pipe(catchError(this.errorHandler));
+      .pipe(
+        catchError(this.errorHandler),
+        tap((response) => {
+          let currentTime = new Date().getTime();
+          let responseExpiryInMilliSeconds = (+response.expiresIn) * 1000
+          const expiryDate = new Date(currentTime + responseExpiryInMilliSeconds);
+          const user = new User(
+            response.email,
+            response.localId,
+            response.idToken,
+            expiryDate
+          );
+          this.user$.next(user)
+        })
+      );
   }
 
   errorHandler(theError: HttpErrorResponse) {
@@ -65,4 +81,14 @@ export class AuthService {
     }
     return throwError(theErrorMessage);
   }
+}
+
+//Class created : To Store the USER RESPONSE {email, localId, idToken, expiry} DETAILS
+export class User {
+  constructor(
+    public email: string,
+    public localId: string,
+    private _token: string,
+    private expiresOn: Date
+  ) {}
 }
