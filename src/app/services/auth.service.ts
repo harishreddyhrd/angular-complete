@@ -21,7 +21,7 @@ export class AuthService {
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.API_KEY}`,
         { email: email, password: password, returnSecureToken: true }
       )
-      .pipe(catchError(this.errorHandler));
+      .pipe(catchError(this.errorHandler), tap(this.responseHandler));
   }
 
   login(email: string, password: string) {
@@ -30,21 +30,20 @@ export class AuthService {
         `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.API_KEY}`,
         { email, password, returnSecureToken: true }
       )
-      .pipe(
-        catchError(this.errorHandler),
-        tap((response) => {
-          let currentTime = new Date().getTime();
-          let responseExpiryInMilliSeconds = (+response.expiresIn) * 1000
-          const expiryDate = new Date(currentTime + responseExpiryInMilliSeconds);
-          const user = new User(
-            response.email,
-            response.localId,
-            response.idToken,
-            expiryDate
-          );
-          this.user$.next(user)
-        })
-      );
+      .pipe(catchError(this.errorHandler), tap(this.responseHandler));
+  }
+
+  responseHandler(theResponse: RegisterResponse | LoginResponse) {
+    let currentTime = new Date().getTime();
+    let responseExpiryInMilliSeconds = +theResponse.expiresIn * 1000;
+    const expiryDate = new Date(currentTime + responseExpiryInMilliSeconds);
+    const user = new User(
+      theResponse.email,
+      theResponse.localId,
+      theResponse.idToken,
+      expiryDate
+    );
+    this.user$.next(user);
   }
 
   errorHandler(theError: HttpErrorResponse) {
