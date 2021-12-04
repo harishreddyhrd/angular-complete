@@ -21,7 +21,7 @@ export class AuthService {
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.API_KEY}`,
         { email: email, password: password, returnSecureToken: true }
       )
-      .pipe(tap(this.responseHandler), catchError(this.errorHandler));
+      .pipe(catchError(this.errorHandler), tap(this.responseHandler));
   }
 
   login(email: string, password: string) {
@@ -30,7 +30,7 @@ export class AuthService {
         `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.API_KEY}`,
         { email, password, returnSecureToken: true }
       )
-      .pipe(tap(this.responseHandler), catchError(this.errorHandler));
+      .pipe(catchError(this.errorHandler), tap(this.responseHandler));
   }
 
   responseHandler(theResponse: RegisterResponse | LoginResponse) {
