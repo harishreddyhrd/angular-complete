@@ -5,7 +5,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   {path: 'authentication', component: UserFormComponent},
-  {path: 'welcome', component: WelcomeComponent}
+  {path: 'welcome', component: WelcomeComponent},
+  {path: '**', redirectTo: 'authentication'}
 ];
 
 @NgModule({

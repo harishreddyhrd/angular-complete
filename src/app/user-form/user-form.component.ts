@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../models/login-response';
 import { RegisterResponse } from '../models/register-response';
@@ -27,7 +28,7 @@ export class UserFormComponent implements OnInit {
   });
   errorMessage!: any;
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
 
   ngOnInit(): void {}
 
@@ -47,6 +48,7 @@ export class UserFormComponent implements OnInit {
         (responseReceived: RegisterResponse | LoginResponse) => {
           console.log(responseReceived);
           this.isLoading = false;
+          this._router.navigate(['/welcome'])
         },
         (errorMsgReceived) => {
           console.log(errorMsgReceived);

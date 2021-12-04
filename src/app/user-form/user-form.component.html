@@ -1,28 +1,30 @@
-<div class="text-center mb-3" *ngIf="errorMessage">
-  <div class="aler alert-danger h6 p-3">{{errorMessage}}</div>
-</div>
-<div class="text-center p-5" *ngIf="isLoading">
-  <app-spinner></app-spinner>
-</div>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" />
-    <small id="emailHelp" class="help-text text-danger" *ngIf="showErrorsForEmail()">
-      {{ showErrorsForEmail() }}
-    </small>
+<div class="col-md-4 offset-md-4 bg-light p-5">
+  <div class="text-center mb-3" *ngIf="errorMessage">
+    <div class="aler alert-danger h6 p-3">{{errorMessage}}</div>
   </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" formControlName="password" />
-    <small id="passwordHelp" class="help-text text-danger" *ngIf="showErrorsForPassword()">
-      {{ showErrorsForPassword() }}
-    </small>
+  <div class="text-center p-5" *ngIf="isLoading">
+    <app-spinner></app-spinner>
   </div>
-  <button type="submit" class="btn mb-3" [ngClass]="isNewUser ? 'btn-success' : 'btn-primary'">
-    {{ isNewUser ? "Register" : "Login" }}
-  </button>
-  <a href="#" class="d-block link-primary" (click)="isNewUser = !isNewUser">
-    {{ isNewUser ? "Existing user? Login now" : "New user? Register Now" }}
-  </a>
-</form>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" />
+      <small id="emailHelp" class="help-text text-danger" *ngIf="showErrorsForEmail()">
+        {{ showErrorsForEmail() }}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" />
+      <small id="passwordHelp" class="help-text text-danger" *ngIf="showErrorsForPassword()">
+        {{ showErrorsForPassword() }}
+      </small>
+    </div>
+    <button type="submit" class="btn mb-3" [ngClass]="isNewUser ? 'btn-success' : 'btn-primary'">
+      {{ isNewUser ? "Register" : "Login" }}
+    </button>
+    <a href="#" class="d-block link-primary" (click)="isNewUser = !isNewUser">
+      {{ isNewUser ? "Existing user? Login now" : "New user? Register Now" }}
+    </a>
+  </form>
+</div>
