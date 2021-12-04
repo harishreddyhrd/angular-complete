@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
-  declarations: [AppComponent, UserFormComponent, SpinnerComponent, WelcomeComponent],
+  declarations: [AppComponent, UserFormComponent, SpinnerComponent, WelcomeComponent, MoviesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
