@@ -27,6 +27,7 @@ export class AddMovieComponent implements OnInit, OnChanges {
   submission!: Movie;
 
   allMovies: Movie[] = [];
+  errorMessage: any;
 
   constructor(private _movieService: MovieService) {}
 
@@ -45,18 +46,25 @@ export class AddMovieComponent implements OnInit, OnChanges {
       .subscribe((response: { name: string }) => {
         console.log(response);
         this.getAllMovies(); //Adds row to table onSubmit()
+      }, errorReceived => {
+        console.log(errorReceived)
+        this.errorMessage = errorReceived.error.error;
       });
     this.addMovieForm.reset();
   }
 
   getAllMovies() {
-    return this._movieService
-      .getDataFromFireBase()
-      .subscribe((response: Movie[]) => {
+    return this._movieService.getDataFromFireBase().subscribe(
+      (response: Movie[]) => {
         for (const id in response) {
           this.allMovies.push({ id, ...response[id] });
         }
-      });
+      },
+      (errorReceived) => {
+        console.log(errorReceived);
+        this.errorMessage = errorReceived.error.error;
+      }
+    );
   }
 
   deleteAllMovies() {
