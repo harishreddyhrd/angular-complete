@@ -1,11 +1,14 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row text-center">
     <h1 class="display-4 bg-light p-5">{{ title }}</h1>
   </div>
-  <div class="row">
+  <div class="row text-center">
     <div class="alert alert-primary px-5">{{ description }}</div>
   </div>
   <div class="row">
+    <div class="p-md-5">
+      <app-welcome></app-welcome>
+    </div>
     <div class="col-md-4 offset-md-4 bg-light p-5">
       <app-user-form></app-user-form>
     </div>
