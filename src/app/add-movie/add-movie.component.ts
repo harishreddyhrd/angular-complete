@@ -8,10 +8,10 @@ import { MovieService } from '../services/movie.service';
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.scss']
+  styleUrls: ['./add-movie.component.scss'],
 })
 export class AddMovieComponent implements OnInit, OnChanges {
- addMovieForm: FormGroup = new FormGroup({
+  addMovieForm: FormGroup = new FormGroup({
     movieName: new FormControl('Khadgam', [
       Validators.required,
       Validators.minLength(1),
@@ -60,22 +60,9 @@ export class AddMovieComponent implements OnInit, OnChanges {
   }
 
   deleteAllMovies() {
-    this._movieService
-      .deleteAllDataFromFireBase()
-      .pipe(
-        tap((resp) => {
-          console.log('tap delete:: ', resp);
-          if (resp.type === HttpEventType.Sent) {
-            console.log('tap delete:: REQUEST SENT');
-          }
-          if (resp.type === HttpEventType.Response) {
-            console.log('tap delete:: RESPONSE RECEIVED');
-          }
-        })
-      )
-      .subscribe((response) => {
-        console.log('delete :: ', response);
-      });
+    this._movieService.deleteAllDataFromFireBase().subscribe((response) => {
+      console.log('delete :: ', response);
+    });
     this.allMovies = [];
   }
 

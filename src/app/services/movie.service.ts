@@ -12,26 +12,14 @@ export class MovieService {
   constructor(private _http: HttpClient) {}
 
   getDataFromFireBase(): Observable<any> {
-    let searchParameters = new HttpParams().set('keyword', 'Telugu');
-    searchParameters = searchParameters.append('actor', 'Allu Arjun');
-    searchParameters = searchParameters.append('actress', 'Kajal Aggarwal');
-
-    return this._http.get(this.URL, {
-      headers: new HttpHeaders({ 'function-used': 'GET-DATA' }),
-      params: searchParameters,
-    });
+    return this._http.get(this.URL);
   }
 
   submitDataToFireBase(data: Movie): Observable<any> {
-    return this._http.post(this.URL, data, {
-      headers: new HttpHeaders({ 'function-used': 'POST-DATA' }),
-      observe: 'response',
-    });
+    return this._http.post(this.URL, data);
   }
 
   deleteAllDataFromFireBase() {
-    return this._http.delete(this.URL, {
-      observe: 'events',
-    });
+    return this._http.delete(this.URL);
   }
 }
