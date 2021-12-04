@@ -2,6 +2,8 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs/operators';
+import { Movie } from '../models/movie';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-add-movie',
