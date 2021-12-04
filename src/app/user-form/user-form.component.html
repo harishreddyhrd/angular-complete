@@ -23,7 +23,7 @@
     <button type="submit" class="btn mb-3" [ngClass]="isNewUser ? 'btn-success' : 'btn-primary'">
       {{ isNewUser ? "Register" : "Login" }}
     </button>
-    <a href="#" class="d-block link-primary" (click)="isNewUser = !isNewUser">
+    <a style="cursor: pointer;" class="d-block link-primary" (click)="isNewUser = !isNewUser">
       {{ isNewUser ? "Existing user? Login now" : "New user? Register Now" }}
     </a>
   </form>
