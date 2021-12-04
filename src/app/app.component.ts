@@ -1,20 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Authentication';
   description = 'Implement authentication in angular';
-
-  constructor(private _authService: AuthService){}
-
-  ngOnInit() {
-    this._authService.user$.subscribe(data => {
-      console.log("USER :: ", data)
-    })
-  }
 }
